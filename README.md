@@ -50,7 +50,7 @@ Emmet是一款代码编辑器的插件, 支持多种流行的的编辑器. 通�
 
 
 
-### jsconsole远程调试移动端应用
-[jsconsole.com](http://jsconsole.com/)
+### chrome DevTools--Remote Debugging on Android with Chrome
+[chrome DevTools](https://developer.chrome.com/devtools/docs/remote-debugging#reverse-port-forwarding)
 
 
