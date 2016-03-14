@@ -65,6 +65,12 @@ $ git remote add origin git@github.com:michaelliao/learngit.git
 #更改一下提交方式
 $ git remote set-url origin git@github.com:ueaner/soap.git
 
+#设置本地分支对应的pull分支
+git branch --set-upstream-to=origin/master master
+
+#设置本地分支对应的push分支(current 表示当前分支)
+git config --global default.push current
+
 #把本地的git库上传到了远程git服务器的git库中
 #由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令
 git push -u origin master
