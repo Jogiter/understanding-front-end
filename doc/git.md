@@ -14,6 +14,19 @@ git ..
 
 ##[git常用命令](http://www.ruanyifeng.com/blog/2012/07/git.html)
 ```
+#push an existing repository from the command line
+git remote add origin git@github.com:Jogiter/gulp-test.git
+git push -u origin master
+
+#create a new repository on the command line
+echo "# gulp-test" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:Jogiter/gulp-test.git
+git push -u origin master
+
+
 #Git创建Develop分支的命令：
 git checkout -b develop master
 
