@@ -8,6 +8,10 @@
 ## Books
 * [free-programming-books](https://github.com/vhf/free-programming-books/blob/master/free-programming-books-zh.md)
 
+## Video
+
+* [This is a list of must-watch videos devoted to JavaScript](https://github.com/bolshchikov/js-must-watch)
+
 ## Javascript
 * [Awesome Javascript](https://github.com/wwsun/awesome-javascript)
 * [Javascript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/) 介绍javascript常见问题
