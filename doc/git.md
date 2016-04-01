@@ -286,3 +286,15 @@ _gh_pages
 _site
 .ruby-version
 ```
+
+
+### issues
+
+1. Your branch is ahead of 'origin/master' by 2 commits.
+
+>git reset --hard origin/master
+
+will remove all commits not in origin/master where origin is the repo name and master is the name of the branch.
+
+2. 
+
