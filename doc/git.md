@@ -43,8 +43,10 @@ git checkout -b feature-x develop
 git checkout develop
 git merge --no-ff feature-x
 
-#删除feature分支：
-git branch -d feature-x
+#删除feature本地分支：
+git branch -d the_local_branch
+删除远程分支(确保你真的要这么做？)
+git push origin :the_remote_branch
 
 #创建一个预发布分支：
 git checkout -b release-1.2 develop
