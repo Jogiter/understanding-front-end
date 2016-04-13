@@ -30,9 +30,20 @@
 * [A to Z css](http://www.atozcss.com/ "CSS Screencasts for Designers & Developers")
 * [Sass Guidelines](http://sass-guidelin.es/zh/#section)
 
+## 订阅周刊
+* [前端周刊](http://feweekly.com/issues)
+* [JavaScript Weekly](http://javascriptweekly.com/)
+* [Mobile Web Weekly](http://mobilewebweekly.co/)
+* [node weekly](http://nodeweekly.com/)
+
+
 ## 浏览器特性检测
 * [Can I Use](http://caniuse.com/) 浏览器js/css特性兼容性查询
 * [Modernizr](https://modernizr.com/) 检测浏览器特性的js库
+
+## 前端社区
+* [玩林](http://www.iwan0.com/)
+
 
 -----
 
