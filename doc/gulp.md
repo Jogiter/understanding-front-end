@@ -17,16 +17,19 @@
 6、 构建项目前清除发布环境下的文件（保持发布环境的清洁）
 
 通过[gulp plugins](http://gulpjs.com/plugins/)，寻找对于的gulp组件
-[gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin): 压缩图片
-[gulp-ruby-sass](https://github.com/sindresorhus/gulp-ruby-sass): 支持sass
-[gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css): 压缩css
-[gulp-jshint](https://github.com/wearefractal/gulp-jshint): 检查js
-[gulp-uglify](https://github.com/terinjokes/gulp-uglify): 压缩js
-[gulp-concat](https://github.com/wearefractal/gulp-concat): 合并文件
-[gulp-rename](https://github.com/hparra/gulp-rename): 重命名文件
-[gulp-htmlmin](https://github.com/jonschlinkert/gulp-htmlmin): 压缩html
-[gulp-clean](https://github.com/peter-vilja/gulp-clean): 清空文件夹
-[gulp-livereload](https://github.com/vohof/gulp-livereload): 服务器控制客户端同步刷新（需配合chrome插件[LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)及[tiny-lr](https://github.com/mklabs/tiny-lr)）
+
++   [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin): 压缩图片
++   [gulp-ruby-sass](https://github.com/sindresorhus/gulp-ruby-sass): 支持sass
++   [gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css): 压缩css
++   [gulp-jshint](https://github.com/wearefractal/gulp-jshint): 检查js
++   [gulp-uglify](https://github.com/terinjokes/gulp-uglify): 压缩js
++   [gulp-concat](https://github.com/wearefractal/gulp-concat): 合并文件
++   [gulp-rename](https://github.com/hparra/gulp-rename): 重命名文件
++   [gulp-htmlmin](https://github.com/jonschlinkert/gulp-htmlmin): 压缩html
++   [gulp-clean](https://github.com/peter-vilja/gulp-clean): 清空文件夹
++   [gulp-livereload](https://github.com/vohof/gulp-livereload): 服务器控制客户端同步刷新（需配合chrome插件[LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)及[tiny-lr](https://github.com/mklabs/tiny-lr)）
++   [gulp-rev](https://www.npmjs.com/package/gulp-rev/) 静态资源版本控制
++   [gulp-rev-replace](https://github.com/jamesknelson/gulp-rev-replace) 替换html文件中的静态资源路径
 
 ### 安装Gulp组件
 
