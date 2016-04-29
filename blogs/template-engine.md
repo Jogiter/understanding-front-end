@@ -88,7 +88,7 @@ Mustache是一个logic-less（无逻辑或轻逻辑）语法模板。可以用�
 
 ### 3. [pug](https://github.com/pugjs/pug)
 
-+   [pug.git](https://github.com/pugjs/pug)
++   [pug.git](http://jade-lang.com/tutorial/)
 +   [demo](http://jade-lang.com/)
 
 Pug是一个有着完善API和惊艳特性的JavaScript模板引擎。使用空白与缩进敏感的代码格式编写HTML页面。基于Node.js，运行在服务器端。

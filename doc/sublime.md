@@ -67,6 +67,15 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 1. 按下Ctrl+Shift+P调出命令面板
 2. 输入install 调出 Install Package 选项并回车，然后在列表中选中要安装的插件。
 
+
+**no-packages-available-for-installation**
+
+>如果碰到`There are no packages available for installation`，请参考[no-packages-available-for-installation](http://stackoverflow.com/questions/25105139/sublime-text-2-there-are-no-packages-available-for-installation)
+
+window: 打开`cmd`，输入`echo 50.116.34.243 sublime.wbond.net >> "C:\Windows\system32\drivers\etc\hosts"`
+
+unix：打开`terminal`，输入`sudo echo "50.116.34.243 sublime.wbond.net" >> /etc/hosts`
+
 ### 推荐的插件
 
 +   [emmet](http://docs.emmet.io/cheat-sheet/)
