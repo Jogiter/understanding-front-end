@@ -17,3 +17,4 @@
 ### issues
 
 
++   [Object.defineProperty 实现视图和数据的联动](https://jsfiddle.net/sckcnh4s/4/)，参考链接[http://www.cnblogs.com/oceanxing/p/3938443.html](http://www.cnblogs.com/oceanxing/p/3938443.html)

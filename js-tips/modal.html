@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>modal demo</title>
+
+    <style type="text/css">
+        body {
+            padding: 15px;
+            margin: 0;
+        }
+
+        /*遮罩层*/
+        .dropback {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            z-index: 1000;
+        }
+
+        .dropback.in {
+            opacity: 0.5;
+            background-color: #000;
+        }
+
+        /*修改弹窗位置*/
+        .modal.in .modal-dialog {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%) !important;
+            -ms-transform: translate(-50%,-50%) !important;
+            -o-transform: translate(-50%,-50%) !important;
+            transform: translate(-50%,-50%) !important;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <h2>Bootstrap: Modal模块</h2>
+    <p><strong>在弹窗之后支持继续弹窗</strong></p>
+    <ol>
+        <li>
+            <p>支持同时打开多个模态框</p>
+        </li>
+        <li>
+            <p>支持键盘esc事件</p>
+        </li>
+        <li>
+            <p>依赖jquery</p>
+        </li>
+    </ol>
+    <hr>
+
+    <button class="btn btn-primary" data-target="#test">click to modal test</button>
+    <button class="btn btn-primary" data-target="#test1">click to modal test</button>
+    <button class="btn btn-primary" data-target="#test2">click to modal test2</button>
+    <button class="btn btn-primary" data-target="#test2,#test1,#test">click to modal both</button>
+
+    <div id="test2" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Hello world</h4>
+                    <p>this is a new modal</p>
+                    <p>this is a new modal for test</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                    <button type="button" class="btn btn-primary">yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="test1" class="modal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Hello world</h4>
+                    <p>this is a new modal</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                    <button type="button" class="btn btn-primary">yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="test" class="modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Hello world</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                    <button type="button" class="btn btn-primary">yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+    (function($) {
+        /*
+            modal 功能
+
+            1.alert confirm loading
+            2.可以自定义弹窗，$.modal()
+            3.弹窗之后还可以继续弹窗
+
+            */
+
+        function Modal(element, option, yes, no) {
+            Modal.DEFAULTS = {
+                shown: true,
+                keyboard: true, // 键盘esc事件
+                dropback: true // 背景是否可点击隐藏
+            };
+
+            this.el = element;
+            this.option = $.extend({}, Modal.DEFAULTS, option);
+            this.yes = yes || function() {};
+            this.no = no || function() {};
+
+            this.init();
+        }
+
+        Modal.prototype = {
+            init: function() {
+                if (!this.option.shown) {
+                    this.hide();
+                } else {
+                    this.show();
+                }
+            },
+            show: function() {
+                console.log('show', $('.modal.in').length, this.option)
+                var existModals = $('.modal.in').length;
+                if (!$('.dropback.in').length) {
+                    $('<div>').addClass('dropback in').appendTo(document.body);
+                }
+                $(this.el).addClass('in').css({
+                    'z-index': 1041 + existModals
+                }).show();
+
+                this.events();
+                this.option.keyboard && this.keyboards();
+            },
+            hide: function() {
+                console.log(this.el);
+                if (!!$('.dropback.in').length && $('.modal.in').length === 1) {
+                    $('.dropback.in').removeClass('in').remove();
+                }
+                $(this.el).removeClass('in').hide();
+                // 销毁事件
+                this.destory();
+            },
+            destory: function() {
+                // destory events
+                $(this.el).off('click');
+                $(this.el).find('.modal-footer button').off('click');
+                $(this.el).find('.close').off('click');
+
+                // destory keyevents
+                $(document).off('keyup');
+            },
+            events: function() {
+                var _this = this;
+
+                // dropback event
+                $(this.el).click(function(e) {
+                    console.log('dropback');
+                    if (!$(e.target).parents('.modal-dialog').length && _this.option.dropback) {
+                        _this.hide();
+                        _this.destory();
+                    }
+                });
+
+                // buttons in footer
+                $(this.el).find('.modal-footer button').click(function(e) {
+                    e.stopPropagation();
+                    var length = $(_this.el).find('.modal-footer button').length;
+                    if (length === 0) {
+                        console.info('no button to be clicked');
+                    } else if (length === 1) {
+                        _this.hide();
+                        _this.destory();
+                        _this.option.yes();
+                    } else {
+                        _this.hide();
+                        _this.destory();
+                        $(this).index() === 0 && _this.no();
+                        $(this).index() === 1 && _this.yes();
+                    }
+                });
+
+                // close button in header
+                $(this.el).find('.close').click(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    _this.hide();
+                    _this.destory();
+                });
+
+                // [data-dismiss="modal"]
+                // $('[data-dismiss="modal"').click(function(e) {
+                //     e.preventDefault();
+                //     e.stopPropagation();
+                //     _this.hide();
+                // });
+            },
+            keyboards: function() {
+                var _this = this;
+                // 按键下去后，事件会执行多次，所有的弹窗都会消失
+                $(document).on('keyup', function(e) {
+                    e.stopPropagation();
+                    if (e.keyCode === 27) {
+                        var existModals = $('.modal.in').length;
+                        if (!!$('.dropback.in').length && $('.modal.in').length === 1) {
+                            $('.dropback.in').removeClass('in').remove();
+                            _this.destory();
+                        }
+                        $('.modal.in').filter(function() {
+                            return $(this).css('z-index') == (1040 + existModals);
+                        }).removeClass('in').hide();
+
+                        _this.destory();
+                    }
+                })
+            }
+        };
+
+        // 扩展成jquery的方法
+        $.fn.modal = function(option, yes, no) {
+            if (typeof option === 'function' && typeof yes === 'function') {
+                new Modal($(this), {}, option, yes);
+            } else {
+                new Modal($(this), option, yes, no);
+            }
+        };
+
+        $.extend({
+            modalSetup: function(target, settings) {
+                if (settings) {
+                    $.extend(target, $.modalSetting);
+                } else {
+                    settings = target;
+                    target = $.extend($.modalSetting, settings);
+                }
+                $.extend(target, settings);
+                return target;
+            },
+            modalSetting: {
+
+            }
+        })
+    })(jQuery);
+
+    // 调用
+    $('#test2').modal(function() {
+        console.log('2 yes');
+    }, function() {
+        console.log('2 no');
+    })
+    $('#test1').modal({
+        dropback: false
+    }, function() {
+        console.log('1 yes');
+    }, function() {
+        console.log('1 no');
+    })
+    $('#test').modal({}, function() {
+        console.log('0 yes');
+    }, function() {
+        console.log('0 no');
+    })
+
+
+    $('button[data-target]').click(function() {
+        var targets = $(this).attr('data-target').split(',').map(function(i) {
+            return $.trim(i);
+        });
+        if (targets.length >1) {
+            targets.forEach(function(item) {
+                $(item).modal();
+            })
+        } else {
+            $(targets[0]).modal();
+        }
+    });
+    </script>
+</body>
+
+</html>
