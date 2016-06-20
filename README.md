@@ -63,6 +63,10 @@ Emmet是一款代码编辑器的插件, 支持多种流行的的编辑器. 通�
 
 [Sublime Text 使用介绍、全套快捷键及插件推荐](https://github.com/Jogiter/frontend/blob/dev/doc/sublime.md)
 
+### [fiddler](http://www.telerik.com/fiddler)
+免费的抓包、模拟xhr、测试工具
+
+
 
 
 ### chrome DevTools--Remote Debugging on Android with Chrome
