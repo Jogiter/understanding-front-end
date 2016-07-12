@@ -1,7 +1,7 @@
 # 前端笔记
 
 分享和记录前端相关的学习技术和资料
-- [前端规范](https://github.com/Jogiter/frontend/blob/master/doc/frontend.md)
+- [前端规范](https://github.com/Jogiter/understanding-front-end/blob/master/doc/frontend.md)
 
 ----
 
