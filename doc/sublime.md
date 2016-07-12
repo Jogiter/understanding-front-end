@@ -86,4 +86,6 @@ unix：打开`terminal`，输入`sudo echo "50.116.34.243 sublime.wbond.net" >> 
 +   sublime better completion
 +   bracket highlighter // 类似于代码匹配，可以匹配括号，引号等符号内的范围
 +   autoprefixer
++   autofilename
++   colorpicker
 +   sublimeCodeIntel
