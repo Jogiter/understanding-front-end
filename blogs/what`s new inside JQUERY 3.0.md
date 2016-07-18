@@ -101,7 +101,7 @@ jQuery 1.7提出用`.on()`方法来绑定事件处理。jQuery 3.0弃用`.bind()
 
 很多人认为jQuery已经死了，在现代网络中已经没有立足之地了。然而，它的发展仍在继续，其统计(前百万的网站中的78.5％都在使用)也反驳了这些说法。
 
-![jQuery usage statistics](jQuery3.0-12.png)
+![jQuery usage statistics](../imgs/jQuery3.0-12.png)
 
 在这篇文章中，我已经和你了解过了jQuery 3.0中重大的改动。你可能已经发现了，这个版本是不会破坏任何现有项目。继续使用jQuery,并且少些，多做。
 
