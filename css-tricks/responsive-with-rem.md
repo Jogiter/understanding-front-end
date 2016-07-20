@@ -4,7 +4,10 @@
 +   [Font Size Idea: px at the Root, rem for Components, em for Text Elements](https://css-tricks.com/rems-ems/)
 +   [ems-media-queries](http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/)
 
-[handle font-size with js](../js-tips/responsive.js)
+[handle font-size with js](../js-tips/Rem-responsive.js)
+[可伸缩布局方案](https://github.com/amfe/lib-flexible)
+[使用Flexible实现手淘H5页面的终端适配](https://github.com/amfe/article/issues/17)
+
 
 
 
