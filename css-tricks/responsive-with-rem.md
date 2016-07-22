@@ -7,7 +7,8 @@
 +   [handle font-size with js](../js-tips/Rem-responsive.js)
 +   [可伸缩布局方案](https://github.com/amfe/lib-flexible)
 +   [使用Flexible实现手淘H5页面的终端适配](https://github.com/amfe/article/issues/17)
-
++   [A JavaScript polyfill for Flexbox](https://github.com/jonathantneal/flexibility)
++   [Grid based on CSS3 flexbox](https://github.com/kristoferjoseph/flexboxgrid)
 
 
 
