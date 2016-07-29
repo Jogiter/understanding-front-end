@@ -41,6 +41,7 @@ npm install gulp-util gulp-imagemin gulp-ruby-sass gulp-minify-css gulp-jshint g
 
 项目目录结构
 
+```js
 project(项目名称)
 |–.git 通过git管理项目会生成这个文件夹
 |–node_modules 组件目录
@@ -56,6 +57,7 @@ project(项目名称)
     |–index.html 静态文件
 |–.jshintrc jshint配置文件
 |–gulpfile.js gulp任务文件
+```
 
 ### gulp基础语法
 
@@ -194,20 +196,25 @@ gulp.task('watch',function(){
 
 
 ### LiveReload配置
+1)  安装Chrome [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
 
-1、 安装Chrome [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
-2、 通过npm安装[http-server](https://www.npmjs.org/package/http-server) ，快速建立http服务
+2)  通过npm安装[http-server](https://www.npmjs.org/package/http-server) ，快速建立http服务
 
 ```
 npm install http-server -g
 ```
 
-3、 通过cd找到发布环境目录dist
-4、 运行http-server，默认端口是8080
-5、 访问路径localhost:8080
-6、 再打开一个cmd，通过cd找到项目路径执行gulp，清空发布环境并初始化
-7、 执行监控 gulp
-8、 点击chrome上的LiveReload插件，空心变成实心即关联上，你可以修改css、js、html即时会显示到页面中。
+3)  通过cd找到发布环境目录dist
+
+4)  运行http-server，默认端口是8080
+
+5)  访问路径localhost:8080
+
+6)  再打开一个cmd，通过cd找到项目路径执行gulp，清空发布环境并初始化
+
+7)  执行监控 gulp
+
+8)  点击chrome上的LiveReload插件，空心变成实心即关联上，你可以修改css、js、html即时会显示到页面中。
 
 
 视频教材youtube（需要翻墙）：[http://www.youtube.com/watch?v=OKVE6wE9CW4](http://www.youtube.com/watch?v=OKVE6wE9CW4)
