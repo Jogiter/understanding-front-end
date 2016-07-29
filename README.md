@@ -43,6 +43,7 @@
 
 ## 前端社区
 * [玩林](http://www.iwan0.com/)
+* [cnode前端资源教程](https://cnodejs.org/topic/56ef3edd532839c33a99d00e)
 
 
 -----
