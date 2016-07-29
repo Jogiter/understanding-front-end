@@ -1,7 +1,7 @@
 # 前端笔记
 
 分享和记录前端相关的学习技术和资料
-- [前端规范](https://github.com/Jogiter/frontend/blob/master/doc/frontend.md)
+- [前端规范](https://github.com/Jogiter/understanding-front-end/blob/master/doc/frontend.md)
 
 ----
 
@@ -30,9 +30,20 @@
 * [A to Z css](http://www.atozcss.com/ "CSS Screencasts for Designers & Developers")
 * [Sass Guidelines](http://sass-guidelin.es/zh/#section)
 
+## 订阅周刊
+* [前端周刊](http://feweekly.com/issues)
+* [JavaScript Weekly](http://javascriptweekly.com/)
+* [Mobile Web Weekly](http://mobilewebweekly.co/)
+* [node weekly](http://nodeweekly.com/)
+
+
 ## 浏览器特性检测
 * [Can I Use](http://caniuse.com/) 浏览器js/css特性兼容性查询
 * [Modernizr](https://modernizr.com/) 检测浏览器特性的js库
+
+## 前端社区
+* [玩林](http://www.iwan0.com/)
+
 
 -----
 
@@ -51,6 +62,10 @@ Emmet是一款代码编辑器的插件, 支持多种流行的的编辑器. 通�
 ### [sublime text3](http://www.sublimetext.com/3)
 
 [Sublime Text 使用介绍、全套快捷键及插件推荐](https://github.com/Jogiter/frontend/blob/dev/doc/sublime.md)
+
+### [fiddler](http://www.telerik.com/fiddler)
+免费的抓包、模拟xhr、测试工具
+
 
 
 

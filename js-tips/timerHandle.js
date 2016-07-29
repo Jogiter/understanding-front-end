@@ -40,7 +40,7 @@
       throw new Error('Invalid Date');
     }else{
       var yyyy, MM, dd, hh, mm, nowDate, Nyyyy, NMM, Ndd,output;
-      nowDate = new Date(origin) || new Date();
+      nowDate = origin ? new Date(origin) : new Date();
       yyyy = date.getFullYear();
       MM = prefix2(date.getMonth()+1);
       dd = prefix2(date.getDate());
