@@ -20,7 +20,7 @@
 
 +   [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin): 压缩图片
 +   [gulp-ruby-sass](https://github.com/sindresorhus/gulp-ruby-sass): 支持sass
-+   [gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css): 压缩css
++   [gulp-clean-css](https://github.com/scniro/gulp-clean-css): 压缩css
 +   [gulp-jshint](https://github.com/wearefractal/gulp-jshint): 检查js
 +   [gulp-uglify](https://github.com/terinjokes/gulp-uglify): 压缩js
 +   [gulp-concat](https://github.com/wearefractal/gulp-concat): 合并文件
