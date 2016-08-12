@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>3D img carousel</title>
+    <style type="text/css">
+        .stage {
+            margin-top: 200px;
+            position: relative;
+            perspective: 800px;
+        }
+        .imgs_3d {
+            position: relative;
+            margin: 0 auto;
+            -webkit-transition: -webkit-transform 1s;
+            -moz-transition: -moz-transform 1s;
+            transition: transform 1s;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        img {
+            position: absolute;
+            bottom: 0;
+            background-color: #ccc;
+            transition: opacity 1s, transform 1s;
+        }
+    </style>
+</head>
+<body>
+    <h2>3D透视</h2>
+    <p>原文链接：<a href="http://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/" target="_blank">CSS3 3D transform变换</a></p>
+
+    <div class="stage">
+        <div class="imgs_3d">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function(factory) {
+            window['carousel'] = factory();
+        })(function() {
+            var $ = function(el) {
+                return document.querySelector(el);
+            };
+
+            var $$ = function(el) {
+                return document.querySelectorAll(el);
+            };
+
+            function delegate(pel, el, event, handler) {
+                document.querySelector(pel).addEventListener(/^on/g.test(event) ? event.replace(/^on/g, '') : event, handle, true);
+
+                function handle(e) {
+                    if (el.indexOf('.') === 0) {
+                        if (Array.prototype.slice.call(e.target.classList).join('').indexOf(el.substr(1)) > -1) {
+                            e.stopPropagation();
+                            handler();
+                        }
+                    } else if (el.indexOf('#') === 0 && e.target.id === el.substr(1)) {
+                        e.stopPropagation();
+                        handler();
+                    } else if (e.target.nodeName.toLowerCase() === el) {
+                        e.stopPropagation();
+                        handler();
+                    } else {
+                        console.warn('can not find the child element');
+                    }
+                }
+
+            }
+
+            var Carousel = function(option) {
+                this.setting(option);
+                this.init();
+            };
+
+            Carousel.prototype = {
+                setting: function(option) {
+                    this.DEFAUTL = {
+                        imgs: [
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658',
+                            'http://hbimg.b0.upaiyun.com/bfbf1a4142bf3968e0c880df06e5b45a14d80c46bc16-gA7yp2_fw658'
+                        ],
+                        perspective: 800, // 3D视距
+                        container: '.stage', // 3D透视的父容器
+                        containerWidth: 128, // 图片的宽&图片父容器的宽
+                        containerHeight: 100, // 图片高&图片父容器的高
+                        imgMargin: 20, // 图片之间的间距
+                        mousemove: false,
+                        index: 0, // 默认居中的图片的索引值
+                        click: true
+                    };
+
+                    this.option = Object.assign(this.DEFAUTL, option, {});
+                },
+                render: function() {
+                    var _this = this;
+                    var imgParent = $(_this.option.container + ' .imgs_3d'),
+                        htm = '',
+                        i = 0,
+                        length = _this.option.imgs.length,
+                        rotateY = 360 / length,
+                        translateZ = _this.option.containerWidth/2/ Math.tan(360/2/length/180*Math.PI) + _this.option.imgMargin;
+
+                    _this.rotateY = rotateY;
+
+                    // 设置父容器的3D透视
+                    $(_this.option.container).style.perspective = _this.option.perspective + 'px';
+                    $(_this.option.container).style.webkitPerspective = _this.option.perspective + 'px';
+                    $(_this.option.container).style.mozPerspective = _this.option.perspective + 'px';
+
+                    // 设置图片父容器的宽和高，宽和图片等宽，高即图片的高度
+                    imgParent.style.width = _this.option.containerWidth + 'px';
+                    imgParent.style.height = _this.option.containerHeight + 'px';
+
+                    // 渲染图片
+                    imgParent.innerHTML = '';
+                    while (i < length) {
+                        htm += '<img src="' + _this.option.imgs[i] + '" alt="3d img" style="'
+                            + 'width: ' + _this.option.containerWidth + 'px;'
+                            // + 'height: auto;'
+                            + '-webkit-transform: rotateY(' + rotateY * i + 'deg) translateZ(' + translateZ + 'px);'
+                            + '-moz-transform: rotateY(' + rotateY * i + 'deg) translateZ(' + translateZ + 'px);'
+                            + '-o-transform: rotateY(' + rotateY * i + 'deg) translateZ(' + translateZ + 'px);'
+                            + 'transform: rotateY(' + rotateY * i + 'deg) translateZ(' + translateZ + 'px);'
+                            + '"/>';
+                        i++;
+                    }
+                    imgParent.innerHTML = htm;
+
+                },
+                init: function() {
+                    this.render();
+                    this.onclick();
+                },
+                goPrev: function() {
+                    var _this = this,
+                        rotate = Number($(_this.option.container + ' .imgs_3d').style.rotate.replace(/px/g, ''));
+
+                    $(_this.option.container + ' .imgs_3d').style.webkitTransform = 'rotateY(' + (rotate - _this.rotateY) + 'deg)';
+                    $(_this.option.container + ' .imgs_3d').style.mozTransform = 'rotateY(' + (rotate - _this.rotateY) + 'deg)';
+                    $(_this.option.container + ' .imgs_3d').style.okitTransform = 'rotateY(' + (rotate - _this.rotateY) + 'deg)';
+                    $(_this.option.container + ' .imgs_3d').style.transform = 'rotateY(' + (rotate - _this.rotateY) + 'deg)';
+                },
+                goNext: function() {
+                    var _this = this,
+                        transform = $(_this.option.container + ' .imgs_3d').style.transform,
+                        r = transform ? transform.match(/(rotate\w?\([\d\.]+deg\))/g) : '',
+                        rotate = r[0] ? Number(r[0].match(/-?\d+/)) : 0;
+
+                    $(_this.option.container + ' .imgs_3d').style.webkitTransform = 'rotateY(' + (rotate + _this.rotateY) + 'deg)';
+                    $(_this.option.container + ' .imgs_3d').style.mozTransform = 'rotateY(' + (rotate + _this.rotateY) + 'deg)';
+                    $(_this.option.container + ' .imgs_3d').style.okitTransform = 'rotateY(' + (rotate + _this.rotateY) + 'deg)';
+                    $(_this.option.container + ' .imgs_3d').style.transform = 'rotateY(' + (rotate + _this.rotateY) + 'deg)';
+                },
+                onclick: function() {
+                    var _this = this;
+                    delegate(_this.option.container + ' .imgs_3d', 'img', 'click', function() {
+                        _this.goNext();
+                    })
+                },
+                onmousemove: function() {
+
+                }
+
+            };
+
+            return Carousel;
+        });
+
+        new carousel();
+
+    </script>
+</body>
+</html>
