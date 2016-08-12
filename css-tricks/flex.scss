@@ -1,0 +1,95 @@
+@import "https://cdn.bootcss.com/normalize/4.2.0/normalize.css";
+
+/*css reset*/
+
+/* http://blog.bingo929.com/css-reset-collection.html
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, font, img,
+ins, kbd, q, s, samp, small, strike,
+strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+center, u, b, i {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+body {
+    line-height: 1;
+}
+:focus {
+    outline: 0;
+}
+ol, ul {
+    list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+}
+blockquote, q {
+    quotes: '';
+}
+input, textarea {
+    margin: 0;
+    padding: 0
+}
+hr {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #000;
+    background-color: #000;
+    height: 1px;
+}
+
+/*end*/
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.base {
+    background: linear-gradient(120deg,  #b04, #f80);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    max-width: 750px;
+}
+
+.wrapper {
+    @extend .base;
+}
+
+.container {
+    @extend .flex;
+    @extend .base;
+    @for $i from 1 through 12 {
+        .col-#{$i} {
+            flex: $i;
+            text-align: center;
+            margin: 1rem auto;
+            * {
+                border: 1px solid #fff;
+                padding: 0.6rem 0;
+                margin: 0 0.5rem;
+                color: #fff;
+            }
+        }
+    }
+}
