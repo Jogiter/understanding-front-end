@@ -28,6 +28,23 @@ var utils = {
 			}
 		}
 	},
+	is: {
+		android: function() {
+			return window.navigator.userAgent.indexOf('Android') > -1 || window.navigator.userAgent.indexOf('Adr') > -1;
+		},
+		ios: function() {
+			return !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		},
+		mobile: function() {
+			return !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
+		},
+		weixin: function() {
+			return navigator.userAgent.indexOf('MicroMessenger') > -1;
+		},
+		qq: function() {
+			return navigator.userAgent.match(/\sQQ/i) == " qq";
+		}
+	},
 	searchBox: function(option, callback) {
 		/**
 			<!-- CSS -->
