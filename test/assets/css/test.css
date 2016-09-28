@@ -1,0 +1,36 @@
+.flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.jc-sb {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.jc-sa {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+.flex-1 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+}
+
+.test {
+    width: 100%;
+    height: 400px;
+    background-color: #fff;
+}
+.test div {
+    margin: 0 4px;
+    background-color: #eef;
+}
+.test div:nth-of-type(odd) {
+    background-color: #eee;
+}
+/*# sourceMappingURL=test.css.map */
+
+
+/*# sourceMappingURL=test.css.map */
