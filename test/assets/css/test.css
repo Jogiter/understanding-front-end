@@ -1,20 +1,24 @@
 .flex {
     display: -webkit-box;
     display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
 }
 .jc-sb {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
+            -webkit-justify-content: space-between;
             justify-content: space-between;
 }
 .jc-sa {
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+        -webkit-justify-content: space-around;
+            justify-content: space-around;
 }
 .flex-1 {
     -webkit-box-flex: 1;
         -ms-flex: 1;
+            -webkit-flex: 1;
             flex: 1;
 }
 
@@ -30,7 +34,4 @@
 .test div:nth-of-type(odd) {
     background-color: #eee;
 }
-/*# sourceMappingURL=test.css.map */
 
-
-/*# sourceMappingURL=test.css.map */
