@@ -21,14 +21,14 @@
 .test {
     width: 100%;
     height: 400px;
-    background-color: #fff;
+    background-color: #777;
 }
 .test div {
     margin: 0 4px;
-    background-color: #eef;
+    background-color: green;
 }
 .test div:nth-of-type(odd) {
-    background-color: #eee;
+    background-color: blue;
 }
 /*# sourceMappingURL=test.css.map */
 
