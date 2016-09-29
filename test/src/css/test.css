@@ -30,5 +30,12 @@
 .test div:nth-of-type(odd) {
     background-color: blue;
 }
+
+.right {
+    background-color: #eab;
+}
+.left {
+    background-color: #eef;
+}
 /*# sourceMappingURL=test.css.map */
 
