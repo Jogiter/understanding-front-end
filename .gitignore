@@ -12,3 +12,5 @@ stash.txt
 
 #  忽略所有.o 和 .a文件.
 #*.[oa]
+node_modules
+.idea
