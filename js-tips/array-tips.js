@@ -28,3 +28,37 @@ Array.prototype.unique = function() {
     }
     return array;
 }
+
+// 利用indexOf判断新数组
+Array.prototype.unique1 = function (){
+ var tmpArr = [];
+ for (var i = 0; i < this.length; i++){
+  if (tmpArr.indexOf(this[i]) == -1){
+   tmpArr.push(this[i]);
+  }
+ }
+ return tmpArr;
+}
+
+ // 利用indexOf判断旧数组
+Array.prototype.unique2 = function(){
+  var tmpArr = []; //结果数组
+  for(var i = 0; i < this.length; i++){
+   if (this.indexOf(this[i]) == i){
+    tmpArr.push(this[i]);
+   }
+  }
+  return tmpArr;
+}
+
+ // 利用hash查找 (根据随机测试， hash方式速度最快)
+Array.prototype.unique3 = function(){
+  var tmpArr=[], hash = {};
+  for(var i = 0; i < this.length; i++){
+   if (!hash[this[i]]){
+     hash[this[i]] = true;
+     tmpArr.push(this[i]);
+   }
+  }
+  return tmpArr;
+}
