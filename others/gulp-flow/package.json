@@ -1,0 +1,24 @@
+{
+  "name": "putao-site-h5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^3.0.3"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp-cached": "^1.1.0",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-qiniu": "^0.2.4",
+    "gulp-rev-all": "^0.8.24",
+    "gulp-uglify": "^2.0.0",
+    "pump": "^1.0.1"
+  }
+}

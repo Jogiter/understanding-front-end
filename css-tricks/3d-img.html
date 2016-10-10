@@ -68,7 +68,6 @@
                         console.warn('can not find the child element');
                     }
                 }
-
             }
 
             var Carousel = function(option) {
@@ -102,7 +101,7 @@
                         click: true
                     };
 
-                    this.option = Object.assign(this.DEFAUTL, option, {});
+                    this.option = Object.assign({}, this.DEFAUTL, option);
                 },
                 render: function() {
                     var _this = this;
