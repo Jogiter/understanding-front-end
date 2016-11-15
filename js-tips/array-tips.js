@@ -62,3 +62,49 @@ Array.prototype.unique3 = function(){
   }
   return tmpArr;
 }
+
+
+/**获取数组中最小值&&索引*/
+var indexOfSmallest = {
+    t1: function(array) {
+        var lowest = 0;
+        for (var i = 1; i < array.length; i++) {
+            if (array[i] < array[lowest]) lowest = i;
+        }
+        return lowest;
+    },
+    t2: function(array) {
+        return array.reduce(function(lowest, next, index) {
+               return next < array[lowest] ? index : lowest; },
+             0);
+    },
+    t3: function(array) {
+        return array.indexOf(Math.min.apply(Math, array));
+    }
+};
+
+
+function makeArray(n = 100, max = 100, min = 0) {
+    let ret = [];
+    for (let i = 0; i < n; i++) {
+        ret.push(Math.floor(Math.random() * (max - min)));
+    }
+    return ret;
+}
+
+var array = makeArray(Math.pow(10, 1));
+
+console.time('t1');
+indexOfSmallest.t1(array);
+console.timeEnd('t1');
+
+console.time('t2');
+indexOfSmallest.t2(array);
+console.timeEnd('t2');
+
+console.time('t3');
+indexOfSmallest.t3(array);
+console.timeEnd('t3');
+
+// 经测试，t3方法速度最快，但是当数组长度过长时，会产生调用堆栈溢出的错误
+// TODO: [http://es6.ruanyifeng.com/#docs/function#尾递归](在ES6中，只要使用尾递归，就不会发生栈溢出，相对节省内存。)
