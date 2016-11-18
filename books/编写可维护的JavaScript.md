@@ -213,13 +213,13 @@ addListener(element, 'click', function (event) {
 ```js
 // 好的写法
 var MyApplication = {
-    
+
     handleClick: function (event) {
-        
+
         // 假设事件支持DOM Level2
         event.preventDefault();
         event.stopPropagation();
-    
+
         // 传入应用逻辑
         this.showPopup(event.clientX, event.clientY);
     },
@@ -374,7 +374,7 @@ if ('hasOwnProperty' in object && object.hasOwnProperty('related')) {
 
 ### 将配置数据从代码中分离出来
 
-精心设计的应用应当将关键数据从主要的源码中国抽离出来，这样我们修改源码时才更加放心。
+精心设计的应用应当将关键数据从主要的源码中抽离出来，这样我们修改源码时才更加放心。
 
 ```js
 // 不好的写法
@@ -635,7 +635,7 @@ var person = {
 // 锁定对象
 Object.preventExtensions(person);
 console.log(Object.isExtensible(person)); // false
-person.age = 25; 
+person.age = 25;
 console.log(person.age); // undefined
 ```
 
@@ -767,7 +767,7 @@ A.7.12 留白
 +   关键词后跟括号的情况应该用空格隔开
 +   参数列表中都好一周应当保留一个空格
 +   所有的出了点(.)之外的二元运算符，其操作符都应当用空格隔开(单目运算符的操作数之间不应该用空格隔开，如递增(++)、递减(--))
-+   for语句中的表达式之间应当用空格隔开   
++   for语句中的表达式之间应当用空格隔开
 
 
 
