@@ -33,6 +33,7 @@ http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html
 1.dns-prefetch
 2.srcset  仅webkit支持
 3.webp格式(svg/webGL等H5新特性)
+4.postcss对css进行处理（庞大的插件库）
 
 视频、音频资源访问权限控制(防盗链)
 
