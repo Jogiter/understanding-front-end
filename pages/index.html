@@ -1740,6 +1740,38 @@ gulp.task(&#39;watch&#39;,function(){
 问题六：我申请的这个职位，对公司的业务有何影响？</p>
 <p>Q6: If you struggle to fill the position I have applied for, what impact would that have on the business?
 这个问题会让你了解自己在公司的角色，以及你的岗位对公司是否重要。</p>
+<h1 id="-meta-hack">移动端meta Hack</h1>
+<h2 id="-">阅读链接：</h2>
+<ul>
+<li><a href="http://avalonjs.coding.me/mobile.html">avalonjs</a></li>
+</ul>
+<pre><code class="lang-html">&lt;!--开启对web app的支持--&gt;
+    &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+&lt;!--主要是正对苹果手机将数字自动识别为号码--&gt;
+    &lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot; /&gt;
+&lt;!-- 忽略识别邮箱，主要是针对安卓手机会自动将符合邮箱格式的字符串识别为邮箱地址--&gt;
+&lt;meta content=&quot;email=no&quot; name=&quot;format-detection&quot; /&gt;
+&lt;meta name=&quot;apple-itunes-app&quot; content=&quot;app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL&quot; /&gt;
+&lt;!-- 添加智能 App 广告条 Smart App Banner：告诉浏览器这个网站对应的app，并在页面上显示下载banner:https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html --&gt;
+&lt;!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 --&gt;
+&lt;meta name=&quot;HandheldFriendly&quot; content=&quot;true&quot;&gt;
+&lt;!-- 微软的老式浏览器 --&gt;
+&lt;meta name=&quot;MobileOptimized&quot; content=&quot;320&quot;&gt;
+&lt;!-- uc强制竖屏 --&gt;
+&lt;meta name=&quot;screen-orientation&quot; content=&quot;portrait&quot;&gt;
+&lt;!-- QQ强制竖屏 --&gt;
+&lt;meta name=&quot;x5-orientation&quot; content=&quot;portrait&quot;&gt;
+&lt;!-- UC强制全屏 --&gt;
+&lt;meta name=&quot;full-screen&quot; content=&quot;yes&quot;&gt;
+&lt;!-- QQ强制全屏 --&gt;
+&lt;meta name=&quot;x5-fullscreen&quot; content=&quot;true&quot;&gt;
+&lt;!-- UC应用模式 --&gt;
+&lt;meta name=&quot;browsermode&quot; content=&quot;application&quot;&gt;
+&lt;!-- QQ应用模式 --&gt;
+&lt;meta name=&quot;x5-page-mode&quot; content=&quot;app&quot;&gt;
+&lt;!-- windows phone 点击无高光 --&gt;
+&lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
+</code></pre>
 <h2 id="js-">JS模块化规范</h2>
 <ul>
 <li>node依赖CommonJS Modules/1.0 规范。</li>
@@ -1767,6 +1799,48 @@ gulp.task(&#39;watch&#39;,function(){
     // module code here    
 });
 </code></pre>
+<h2 id="-node-js-https-ssl-certificate-http-www-hacksparrow-com-node-js-https-ssl-certificate-html-"><a href="http://www.hacksparrow.com/node-js-https-ssl-certificate.html">Node.js HTTPS – SSL Certificate</a></h2>
+<p>1.如何建立一个Node.js HTTPS服务器</p>
+<p>如果你的项目中需要使用到HTTPS？或者只是想知道在Node.js中创建一个HTTPS服务器到底难不难。在这篇文章中，我将向你展示如何在您的本地系统建立一个HTTPS Node.js服务器。</p>
+<p>首先，我们需要创建一个服务器的SSL证书。推荐的方法是从<a href="http://en.wikipedia.org/wiki/Certificate_authority">证书颁发机构</a>来签署你的证书，但出于测试的目的，我们可以自己来签署它。</p>
+<pre><code class="lang-js">$ openssl genrsa -out hacksparrow-key.pem 1024 
+$ openssl req -new -key hacksparrow-key.pem -out certrequest.csr
+... bunch of prompts
+$ openssl x509 -req -in certrequest.csr -signkey hacksparrow-key.pem -out hacksparrow-cert.pem
+</code></pre>
+<p><strong>注意</strong>：在第二个命令中，当提示<code>Common Name（例如，你的名字）</code>时，“不要填写你的名字。它实际上是域名字段，所以输入您的域名。不填写你的域名将导致“域名不匹配”错误。</p>
+<p>有了SSL证书。就可以在线上服务器上使用，但是浏览器会向用户发出一个警告，提示用户证书是“不安全的”。如果你对自己的信誉很注重，最好不要使用自签名的证书。</p>
+<p>现在我们获取到了签名的SSL证书，我们就可以搭建我们的HTTPS服务器。</p>
+<pre><code class="lang-js">var https = require(&#39;https&#39;);
+var fs = require(&#39;fs&#39;);
+
+var hskey = fs.readFileSync(&#39;hacksparrow-key.pem&#39;);
+var hscert = fs.readFileSync(&#39;hacksparrow-cert.pem&#39;)
+
+var options = {
+    key: hskey,
+    cert: hscert
+};
+
+https.createServer(options, function (req, res) {
+    res.writeHead(200);
+    res.end(&quot;Hi from HTTPS&quot;);
+}).listen(8000);
+</code></pre>
+<p>建立一个HTTPS Node.js服务器很容易的。如果你使用的是<a href="http://www.expressjs.com.cn/">express.js</a>Web框架，下面可以建立一个HTTPS Express服务器：</p>
+<pre><code class="lang-js">var fs = require(&#39;fs&#39;);
+
+var hskey = fs.readFileSync(&#39;hacksparrow-key.pem&#39;);
+var hscert = fs.readFileSync(&#39;hacksparrow-cert.pem&#39;)
+
+var options = {
+    key: hskey,
+    cert: hscert
+};
+var app = require(&#39;express&#39;).createServer(options);
+</code></pre>
+<p>真的非常简单。</p>
+<p>如果你是一个企业，我们强烈建议你从一个著名的证书管理机构来获取你的SSL证书。祝你祝你的项目/实验好运。</p>
 <h2 id="issues">issues</h2>
 <ul>
 <li><a href="http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo">npm-throws-error-without-sudo</a></li>
@@ -1913,6 +1987,20 @@ name -&gt; 200% name @2x.png(name和@2x之间需要有空格)</p>
 <li>前端seo</li>
 <li>虚拟机</li>
 </ul>
+<p>1.搭建虚拟机
+2.搭建自己的gitLab服务器
+3.安装git node环境 ngix</p>
+<p>前端优化：</p>
+<p>1.dns-prefetch
+2.srcset  仅webkit支持
+3.webp格式(svg/webGL等H5新特性)
+4.postcss对css进行处理（庞大的插件库）</p>
+<p>视频、音频资源访问权限控制(防盗链)</p>
+<h2 id="-">开发模式(模块化+新语法)</h2>
+<p>webpack打包(代码兼容ie8，打包的也会兼容ie8)+es6语法(.babelrc配置)</p>
+<p>优势：利于模块化开发，es6语法更简洁
+不足：学习成本 【webpack &amp;&amp; es6】</p>
+<p>-- vue不兼容ie8，考虑做兼容处理？？实现难度，vue的底层实现Object.defineProperty仅支持到ie9以上的现代浏览器，兼容则需要实现该api的shim</p>
 <h2 id="-vim-http-www-cnblogs-com-softwaretesting-archive-2011-07-12-2104435-html-"><a href="http://www.cnblogs.com/softwaretesting/archive/2011/07/12/2104435.html">Vim命令合集</a></h2>
 <h3 id="-">命令历史</h3>
 <p>以:和/开头的命令都有历史纪录，可以首先键入:或/然后按上下箭头来选择某个历史命令</p>
