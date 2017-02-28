@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/normalize/4.2.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/highlight.js/9.7.0/styles/github.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
@@ -91,16 +93,16 @@
 <p>一般项目的目录结构如下:</p>
 <pre><code>./ 项目根目录
 │  index.html 首页面
-│
+│  
 └─assets     静态资源文件夹
     ├─css    CSS代码文件夹, 也可以放置less, sass等CSS预处理语言的代码
-    │  │
+    │  │  
     │  └─img CSS引用的图片, 比如图标, 背景图片等
     │
     ├─img    页面直接引用的图片, 比如轮播图片
-    │
+    │    
     ├─js     JS代码文件夹, 也可以放置coffeescript等js预处理语言的代码
-    │
+    │      
     └─lib    第三方库的文件夹, 每一个库应单独建立一个文件夹,
                   用来放置该库的所有文件, 包括js,css,图片, 字体等
 </code></pre><h2 id="-">文件规范</h2>
@@ -912,7 +914,7 @@ git merge origin/master
 </ol>
 <p>上述过程其实可以用以下更清晰的方式来进行：</p>
 <pre><code>git fetch origin master:tmp
-git diff tmp
+git diff tmp 
 git merge tmp
 </code></pre><p>从远程获取最新的版本到本地的test分支上
 之后再进行比较合并</p>
@@ -962,7 +964,7 @@ git diff 是一个难以置信的有用的工具，可以找出你项目上任�
 
 这会显示你当前工作目录与另外一个叫`test`分支的差别。你也以加上路径限定符，来只 比较某一个文件或目录。
 
-&gt;$ git diff HEAD -- ./lib
+&gt;$ git diff HEAD -- ./lib 
 
 上面这条命令会显示你当前工作目录下的`lib目录`与上次提交之间的差别(或者更准确的 说是在当前分支)。
 
@@ -1021,7 +1023,7 @@ git diff 是一个难以置信的有用的工具，可以找出你项目上任�
 &gt;$&gt; git grep --all-match -e &#39;#define&#39; -e SORT_DIRENT
 
 我们也可以查找出符合一个条件(term)且符合两个条件(terms)之一的文件行.　例如我们要找出名字中含有‘PATH&#39;或是&#39;MAX&#39;的常量定义:
-&gt;$&gt; git grep -e &#39;#define&#39; --and \( -e PATH -e MAX \)
+&gt;$&gt; git grep -e &#39;#define&#39; --and \( -e PATH -e MAX \) 
 
 
 ###git如何查看某一个文件的详细提交记录
@@ -1222,7 +1224,7 @@ _site
 <pre><code class="lang-sh">git branch --contains &lt;commit-ish&gt;
 </code></pre>
 <h2 id="git-aliases">Git Aliases</h2>
-<pre><code class="lang-sh">git config --global alias.&lt;handle&gt; &lt;command&gt;
+<pre><code class="lang-sh">git config --global alias.&lt;handle&gt; &lt;command&gt; 
 git config --global alias.st status
 </code></pre>
 <h2 id="saving-current-state-of-tracked-files-without-commiting">Saving current state of tracked files without commiting</h2>
@@ -1457,11 +1459,11 @@ git config --global alias.st status
 <pre><code class="lang-sh">git checkout master &amp;&amp; git branch --no-merged
 </code></pre>
 <h2 id="find-guilty-with-binary-search">Find guilty with binary search</h2>
-<pre><code class="lang-sh">git bisect start                    # Search start
-git bisect bad                      # Set point to bad commit
-git bisect good v2.6.13-rc2         # Set point to good commit|tag
-git bisect bad                      # Say current state is bad
-git bisect good                     # Say current state is good
+<pre><code class="lang-sh">git bisect start                    # Search start 
+git bisect bad                      # Set point to bad commit 
+git bisect good v2.6.13-rc2         # Set point to good commit|tag 
+git bisect bad                      # Say current state is bad 
+git bisect good                     # Say current state is good 
 git bisect reset                    # Finish search
 </code></pre>
 <h2 id="bypass-pre-commit-and-commit-msg-githooks">Bypass pre-commit and commit-msg githooks</h2>
@@ -1863,14 +1865,14 @@ gulp.task(&#39;watch&#39;,function(){
         this[&quot;moduleName&quot;] = factory();
     }
 })(function() {
-    // module code here
+    // module code here    
 });
 </code></pre>
 <h2 id="-node-js-https-ssl-certificate-http-www-hacksparrow-com-node-js-https-ssl-certificate-html-"><a href="http://www.hacksparrow.com/node-js-https-ssl-certificate.html">Node.js HTTPS – SSL Certificate</a></h2>
 <p>1.如何建立一个Node.js HTTPS服务器</p>
 <p>如果你的项目中需要使用到HTTPS？或者只是想知道在Node.js中创建一个HTTPS服务器到底难不难。在这篇文章中，我将向你展示如何在您的本地系统建立一个HTTPS Node.js服务器。</p>
 <p>首先，我们需要创建一个服务器的SSL证书。推荐的方法是从<a href="http://en.wikipedia.org/wiki/Certificate_authority">证书颁发机构</a>来签署你的证书，但出于测试的目的，我们可以自己来签署它。</p>
-<pre><code class="lang-js">$ openssl genrsa -out hacksparrow-key.pem 1024
+<pre><code class="lang-js">$ openssl genrsa -out hacksparrow-key.pem 1024 
 $ openssl req -new -key hacksparrow-key.pem -out certrequest.csr
 ... bunch of prompts
 $ openssl x509 -req -in certrequest.csr -signkey hacksparrow-key.pem -out hacksparrow-cert.pem
