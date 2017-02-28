@@ -40,7 +40,6 @@ var regEmail = /^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*
  * i为身份证号码1...17 位; Y_P为校验码Y所在校验码数组位置
  */
 function validateIdCard(idCard) {
-    //15位和18位身份证号码的正则表达式
     var regIdCard = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
 
     //如果通过该验证，说明身份证格式正确，但准确性还需计算
@@ -59,21 +58,21 @@ function validateIdCard(idCard) {
             //如果等于2，则说明校验码是10，身份证号码最后一位应该是X
             if (idCardMod == 2) {
                 if (idCardLast == "X" || idCardLast == "x") {
-                    alert("恭喜通过验证啦！");
+                    return true;
                 } else {
-                    alert("身份证号码错误！");
+                    return false;
                 }
             } else {
                 //用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码
                 if (idCardLast == idCardY[idCardMod]) {
-                    alert("恭喜通过验证啦！");
+                    return true;
                 } else {
-                    alert("身份证号码错误！");
+                    return false;
                 }
             }
         }
     } else {
-        alert("身份证格式不正确!");
+        return false;
     }
 }
 
