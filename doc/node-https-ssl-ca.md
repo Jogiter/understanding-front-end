@@ -41,6 +41,15 @@ https.createServer(options, function (req, res) {
 
 ```js
 var fs = require('fs');
+var https = require('https');
+var express = require('express');
+
+var app = express();
+
+var CONFIG = {
+    port: 8888,
+    host: 'localhost'
+};
 
 var hskey = fs.readFileSync('hacksparrow-key.pem');
 var hscert = fs.readFileSync('hacksparrow-cert.pem')
@@ -49,9 +58,12 @@ var options = {
     key: hskey,
     cert: hscert
 };
-var app = require('express').createServer(options);
+var server = https.createServer(options, app)
+    .listen(CONFIG.port, CONFIG.host, function() {
+        console.log('server listen at %s:%d', CONFIG.host, CONFIG.port);
+    });
 ```
 
 真的非常简单。
 
-如果你是一个企业，我们强烈建议你从一个著名的证书管理机构来获取你的SSL证书。祝你祝你的项目/实验好运。
+如果你是一个企业用户，我们强烈建议你从一个著名的证书管理机构来获取你的SSL证书。祝你祝你的项目/实验好运。
