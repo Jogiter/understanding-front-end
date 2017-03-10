@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Document</title>
+    <title>文档</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/normalize/4.2.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/highlight.js/9.7.0/styles/github.min.css">
@@ -13,75 +13,18 @@
         hljs.initHighlightingOnLoad();
     </script>
     <style>
-        /*util*/
-        .text-center {
-            text-align: center;
-        }
-        .text-left {
-            text-align: left;
-        }
-        .text-right {
-            text-align: right;
-        }
-        /*end*/
         body {
-            font-family: 'Microsoft Yahei', Helvetica, Arial, sans-serif;
+            width: 960px;
+            margin: auto;
         }
-        aside {
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 20rem;
-            overflow-y: scroll;
-        }
-        aside ol {
-            margin: 0;
-            padding-left: 2rem;
-            padding-top: 1rem;
-        }
-        aside ol li {
-            margin-top: 0;
-            margin-bottom: 1rem;
-            margin-left: 10px;
-            padding: 0;
-            text-indent: -5px;
-            font-size: 0.8rem;
-        }
-        aside a:visited,
-        aside a:link {
-            color: #4682BE;
-            text-decoration: none;
-        }
-        section#main {
-            margin-left: 22rem;
-            margin-right: 2rem;
-        }
-        h1 {
-            /*font-size: 1.6rem;*/
+        @media screen and (max-width: 769px) {
+            body {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <aside>
-        <h2 class="text-center"><a href="#">Jogiter Blog</a></h2>
-    </aside>
-    <section id="main">
-        <!-- main -->
-    </section>
-
-    <script>
-        (function () {
-            $(function() {
-                var nav = '<ol>';
-                // TODO: 所有h2和h3和h4都需要显示
-                $('#main h2').each(function() {
-                    var title = $(this).attr('id');
-                    nav += '<li><a href="#' + title + '">' + title + '</a></li>';
-                });
-                $('aside').append(nav);
-            });
-        })();
-    </script>
+    <!-- main -->
 </body>
 </html>

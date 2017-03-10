@@ -29,10 +29,17 @@ gulp.task('header-js', () => {
 
 
 gulp.task('md2html', () => {
-    return gulp.src(CONFIG.src + '**/*.md')
-        .pipe(concat('index.md'))
-        .pipe(markdown())
-        .pipe(gulp.dest(CONFIG.dist));
+    if (process.env.src) {
+        return gulp.src(process.env.src + '.md')
+            .pipe(concat('index.md'))
+            .pipe(markdown())
+            .pipe(gulp.dest(CONFIG.dist));
+    } else {
+        return gulp.src(CONFIG.src + '**/*.md')
+            .pipe(concat('index.md'))
+            .pipe(markdown())
+            .pipe(gulp.dest(CONFIG.dist));
+    }
 });
 
 gulp.task('pages', ['md2html'], () => {
@@ -43,7 +50,7 @@ gulp.task('pages', ['md2html'], () => {
         gulp.src(CONFIG.layout)
             .pipe(replace('<!-- main -->', file))
             .pipe(rename({
-                basename: 'index'
+                basename: process.env.src || 'index'
             }))
             .pipe(gulp.dest('./'))
             .pipe(connect.reload());
