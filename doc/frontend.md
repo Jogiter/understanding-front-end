@@ -750,3 +750,6 @@ var PAGE_SIZE = 10;
 尽量避免使用 `==` `!=`, 推荐使用严格比较 `===` `!==` .
 * `eval` 非特殊业务， 禁止使用
 * `with` 非特殊业务， 禁止使用
+
+
+[>原文地址](https://github.com/Jogiter/understanding-front-end/blob/master/doc/frontend.md)
