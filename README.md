@@ -13,6 +13,8 @@
 * [This is a list of must-watch videos devoted to JavaScript](https://github.com/bolshchikov/js-must-watch)
 
 ## Javascript
+
+* [awesome frontend libraries](https://github.com/JingwenTian/awesome-frontend)
 * [Awesome Javascript](https://github.com/wwsun/awesome-javascript)
 * [Javascript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/) 介绍javascript常见问题
 * [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
