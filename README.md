@@ -30,6 +30,19 @@
 * [A to Z css](http://www.atozcss.com/ "CSS Screencasts for Designers & Developers")
 * [Sass Guidelines](http://sass-guidelin.es/zh/#section)
 
+## VUE
+
+* [Vue UI Components based on WeUI](https://github.com/airyland/vux)
+* [A curated list of awesome things related to Vue.js](https://github.com/vuejs/awesome-vue)
+
+## DOC
+
+* [Effortlessly documentation done right](https://github.com/egoist/docute)
+
+## Gulp
+
+* [gulp docs in Chinese](https://github.com/lisposter/gulp-docs-zh-cn)
+
 ## 订阅周刊
 * [前端周刊](http://feweekly.com/issues)
 * [JavaScript Weekly](http://javascriptweekly.com/)
@@ -44,6 +57,8 @@
 ## 前端社区
 * [玩林](http://www.iwan0.com/)
 * [cnode前端资源教程](https://cnodejs.org/topic/56ef3edd532839c33a99d00e)
+
+
 
 
 -----
