@@ -161,7 +161,7 @@ var mult = (function() {
             a *= arguments[i];
         }
         return a;
-    }; 
+    };
 
     return function() {
         var args = Array.prototype.join.call(arguments, ',');
@@ -276,4 +276,89 @@ func = func.before(function() {
 
 func();
 // 1 2 3
+```
+
+４.高阶函数的其他应用
+
+1.curring
+
+`curring`又称部分求值。一个curring函数会接受一些参数，接受参数后并不会立即求值，而是继续返回一个函数，刚才传入的参数在函数形成的闭包中被保存了起来。等到函数需要真正求值的时候，之前传入的参数都会被一次性用于求值。
+
+2.uncurring
+
+```js
+Function.prototype.uncurring = function() {
+	var self = this;
+	return function() {
+		var obj = Array.prototype.shift.call(arguments);
+		return self.apply(obj, arguments);
+	};
+}
+```
+
+3.函数节流
+
+**函数被频繁调用的场景**
+
++	window.onsize事件。
++	mousemove事件
++	上传进度
+
+**函数节流原理**
+
+在一段时间内可以忽略掉一些事件请求，因此可以借助setTimeout来完成事情。
+
+**函数节流的代码实现**
+
+```js
+var throttle = function(fn, interval) {
+	var _self = fn, // 保存需要被延迟执行的函数引用
+		timer, // 定时器
+		firstTime = true; // 是否是第一次调用
+	return function() {
+		var args = arguments,
+			_this = this;
+		if (firstTime) { // 如果是第一次调用，不需要延迟执行
+			_self.apply(_this, args);
+			return firstTime = false;
+		}
+		if (timer) { // 如果定时器还在，说明上一次还没有执行完
+			return false;
+		}
+		timer = setTimeout(function() {
+			clearTimeout(timer);
+			timer = null;
+			_self.apply(_this, args);
+		}, interval || 500);
+	};
+};
+
+window.onresize = throttle(function() {
+	console.log(1);
+}, 500);
+```
+
+4.分时函数
+
+```js
+var timechunk = function(arr, fn, count) {
+	var obj,
+		t;
+	var len = arr.length;
+	var start = function() {
+		for (var i = 0; i < Math.min(count ||1, len); i++) {
+			var obj = arr.shift();
+			fn(obj);
+		}
+	};
+
+	return function() {
+		t = setInterval(function() {
+			if (arr.length === 0) {
+				return clearInterval();
+			}
+			start();
+		}, 200); // 分批执行间隔，可以用参数的形式传入
+	};
+}
 ```
