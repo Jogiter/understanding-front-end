@@ -46,31 +46,35 @@ var Is = {
 }
 
 var Cookie = {
-    fromVIP (key) {
-        var vipCookie = this.get('vipcookie')
-        return URL.get(key, vipCookie);
-    },
-    get (key) {
+    get(key) {
         var arr,
-            reg=new RegExp("(^| )" + key + "=([^;]*)(;|$)");
+            reg = new RegExp("(^| )" + key + "=([^;]*)(;|$)");
         if (arr = document.cookie.match(reg)) {
             return unescape(arr[2]);
         } else {
             return null;
         }
     },
-    set (key, value) {
+    set(name, value) {
         var Days = 30;
         var exp = new Date();
-        exp.setTime(exp.getTime() + Days*24*60*60*1000);
-        document.cookie = key + "=" + escape(value) + ";expires=" + exp.toGMTString();
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
     },
-    delete (key) {
+    delete(name) {
         var exp = new Date();
         exp.setTime(exp.getTime() - 1);
-        var cval = this.get(key);
+        var cval = this.get(name);
         if (cval != null) {
             document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+        }
+    },
+    clear() {
+        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (var i = keys.length; i--;) {
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+            }
         }
     }
 }
