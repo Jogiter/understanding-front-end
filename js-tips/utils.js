@@ -37,7 +37,7 @@ var Is = {
     mobile() {
         return !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
     },
-    weixin() {
+    wechat() {
         return navigator.userAgent.indexOf('MicroMessenger') > -1;
     },
     qq() {
@@ -125,12 +125,30 @@ var Tools = {
             return toThousands(num / 1e12) + '万亿'
         }
     },
+    // 在某个(同步或异步)事件执行后，delay秒后执行。依赖jquery的deferred对象
+    wait: function wait(waitFunction, delay, callback) {
+        var startTime,
+            endTime,
+            wait = delay || 0;
+        startTime = new Date().getTime();
+        // ajax等异步操作 promise|await
+        $.when(waitFunction()).done(function(res) {
+            endTime = new Date().getTime();
+            if (endTime - startTime >= wait) {
+                callback(res);
+            } else {
+                setTimeout(function() {
+                    callback(res);
+                }, wait + startTime - endTime);
+            }
+        });
+    },
 }
 
 // 时间函数
 var Time = {
     // 根据秒来获取倒计时的时间[天, 时, 分, 秒]
-    countown (seconds, callback) {
+    countdown (seconds, callback) {
         var timer;
 
         function getTime(seconds) {
@@ -156,7 +174,10 @@ var Time = {
             }
             return time.concat(prefix(day), prefix(hour), prefix(min), prefix(sec));
         }
-
+        if (seconds) {
+	        callback(getTime(seconds));
+	        seconds--;
+	    }
         timer = setInterval(function() {
             if (seconds) {
                 callback(getTime(seconds));
