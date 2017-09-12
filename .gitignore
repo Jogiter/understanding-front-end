@@ -1,18 +1,4 @@
-# 以'#' 开始的行，被视为注释.
-# 忽略掉所有文件名是 *.txt 的文件.
-#*.txt
-demo.txt
-stash.txt
-
-# 忽略所有生成的 html 文件,
-#*.html
-
-# foo.html是手工维护的，所以例外.
-#!foo.html
-
-#  忽略所有.o 和 .a文件.
-#*.[oa]
+*.log
 
 node_modules
-.idea
-bower_components
+test
