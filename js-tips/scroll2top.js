@@ -25,6 +25,7 @@
     }
 }());
 
+/**pos可能小于可滚动高度，需自己兼容*/
 function scroll(pos, time) {
     pos = pos || 0;
     time = time || 1000;
@@ -35,10 +36,18 @@ function scroll(pos, time) {
     function _scroll() {
         var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
         window.scrollTo(0, scrollTop += speed)
-        if (scrollTop <= pos) {
-            window.cancelAnimationFrame(raf)
+        if (speed < 0) {
+            if (scrollTop <= pos) {
+                window.cancelAnimationFrame(raf)
+            } else {
+                raf = window.requestAnimationFrame(_scroll);
+            }
         } else {
-            raf = window.requestAnimationFrame(_scroll);
+            if (scrollTop >= pos) {
+                window.cancelAnimationFrame(raf)
+            } else {
+                raf = window.requestAnimationFrame(_scroll);
+            }
         }
     }
     window.requestAnimationFrame(_scroll);
