@@ -61,3 +61,29 @@ semver 格式：`主版本号`.`次版本号`.`修订号`。版本号递增规�
 2.[http://taobaofed.org/blog/2016/08/04/instructions-of-semver/](http://taobaofed.org/blog/2016/08/04/instructions-of-semver/)
 
 作为 Node.js 的开发者，我们在发布 npm 模块的时候一定要遵守语义化版本的命名规则，即：有 breaking change 发大版本，有新增的功能发小版本，有小的 bug 修复或优化则发修订版本。
+
+
+### [nrm--NPM registry manager](https://github.com/Pana/nrm)
+
+```sh
+# install
+>$ npm install -g nrm
+# usage
+$ nrm ls
+
+* npm -----  https://registry.npmjs.org/
+  cnpm ----  http://r.cnpmjs.org/
+  taobao --  https://registry.npm.taobao.org/
+  nj ------  https://registry.nodejitsu.com/
+  rednpm -- http://registry.mirror.cqupt.edu.cn
+  skimdb -- https://skimdb.npmjs.com/registry
+
+# use
+$ nrm use cnpm  //switch registry to cnpm
+
+    Registry has been set to: http://r.cnpmjs.org/
+```
+
+>由于国内高墙，建议使用淘宝 NPM 镜像--[cnpm](https://npm.taobao.org/)，加快包安装速度。
+
+
