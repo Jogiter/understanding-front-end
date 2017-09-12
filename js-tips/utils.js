@@ -45,11 +45,7 @@ var Is = {
     }
 }
 
-var Cookie = {
-    fromVIP (key) {
-        var vipCookie = this.get('vipcookie')
-        return URL.get(key, vipCookie);
-    },
+const Cookie = {
     get (key) {
         var arr,
             reg=new RegExp("(^| )" + key + "=([^;]*)(;|$)");
@@ -59,21 +55,21 @@ var Cookie = {
             return null;
         }
     },
-    set (key, value) {
+    set (name, value) {
         var Days = 30;
         var exp = new Date();
         exp.setTime(exp.getTime() + Days*24*60*60*1000);
         document.cookie = name + "=" + escape (value) + ";expires=" + exp.toGMTString();
     },
-    delete (key) {
+    delete (name) {
         var exp = new Date();
         exp.setTime(exp.getTime() - 1);
-        var cval = this.get(key);
+        var cval = this.get(name);
         if (cval != null) {
             document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
         }
     }
-}
+};
 
 
 // 弹窗辅助
