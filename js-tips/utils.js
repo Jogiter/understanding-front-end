@@ -45,8 +45,8 @@ var Is = {
     }
 }
 
-var Cookie = {
-    get(key) {
+const Cookie = {
+    get (key) {
         var arr,
             reg = new RegExp("(^| )" + key + "=([^;]*)(;|$)");
         if (arr = document.cookie.match(reg)) {
@@ -55,13 +55,13 @@ var Cookie = {
             return null;
         }
     },
-    set(name, value) {
+    set (name, value) {
         var Days = 30;
         var exp = new Date();
         exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
         document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
     },
-    delete(name) {
+    delete (name) {
         var exp = new Date();
         exp.setTime(exp.getTime() - 1);
         var cval = this.get(name);
@@ -77,7 +77,7 @@ var Cookie = {
             }
         }
     }
-}
+};
 
 
 // 弹窗辅助
