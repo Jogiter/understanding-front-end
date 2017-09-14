@@ -62,6 +62,9 @@
 import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
 ```
 
+- [Package Control no longer showing up in Sublime Text 3](https://github.com/wbond/package_control/issues/874)
+- [Installation - Package Control](https://packagecontrol.io/installation)
+
 ### 用Package Control安装插件的方法
 
 1. 按下Ctrl+Shift+P调出命令面板
@@ -80,12 +83,17 @@ unix：打开`terminal`，输入`sudo echo "50.116.34.243 sublime.wbond.net" >> 
 
 +   [emmet](http://docs.emmet.io/cheat-sheet/)
 +   SideBarEnhancements
-+   FileDiffs
-+   markdown editing
-+   htmlBeautify(/CodeFormatter)
-+   sublime better completion
++   A File Icon
++   All Autocomplete
++   Auto FileName
 +   bracket highlighter // 类似于代码匹配，可以匹配括号，引号等符号内的范围
-+   autoprefixer
-+   autofilename
-+   colorpicker
++   EditorConfig
++   FileDiffs
++   HTML/CSS/JS prettify
++   ESlint
++   Autoprefixer
 +   sublimeCodeIntel
++   markdown editing
++   colorpicker
++   vue syntax highlight
++   vuejs snippets
