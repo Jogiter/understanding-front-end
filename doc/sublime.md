@@ -44,11 +44,31 @@
 
 ```
 {
-    "default_encoding": "UTF-8",
-    "font_size": 12,
-    "tab_size": 4,
-    "translate_tabs_to_spaces": true,
-    "trim_trailing_white_space_on_save": true
+    {
+		"auto_complete_triggers":
+		[
+			{
+				"characters": "<",
+				"selector": "text.html"
+			},
+			{
+				"characters": "bs3",
+				"selector": "text.html"
+			}
+		],
+		"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+		"default_encoding": "UTF-8",
+		"font_size": 13,
+		"ignored_packages":
+		[
+			"Vintage"
+		],
+		"show_encoding": true,
+		"tab_size": 4,
+		"theme": "Agila Monokai.sublime-theme",
+		"translate_tabs_to_spaces": true,
+		"trim_trailing_white_space_on_save": true
+	}
 }
 ```
 
