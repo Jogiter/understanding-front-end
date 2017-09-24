@@ -64,6 +64,7 @@ git branch -d release-1.2
 
 #删除远程分支
 git branch -r -d origin/branch-name
+git push origin :branch-name
 
 #查看一下提交的地址
 $ git remote -v
@@ -109,7 +110,7 @@ git merge origin/master
 上述过程其实可以用以下更清晰的方式来进行：
 ```
 git fetch origin master:tmp
-git diff tmp 
+git diff tmp
 git merge tmp
 ```
 从远程获取最新的版本到本地的test分支上
@@ -119,7 +120,7 @@ git merge tmp
 ```
 git pull origin master
 
-git checkout -b local-branchname origin/remote_branchname  #就可以将远程分支映射到本地命名为local-branchname  的一分支。 
+git checkout -b local-branchname origin/remote_branchname  #就可以将远程分支映射到本地命名为local-branchname  的一分支。
 ```
 上述命令其实相当于git fetch 和 git merge
 
@@ -161,7 +162,7 @@ git diff 是一个难以置信的有用的工具，可以找出你项目上任�
 
 这会显示你当前工作目录与另外一个叫`test`分支的差别。你也以加上路径限定符，来只 比较某一个文件或目录。
 
->$ git diff HEAD -- ./lib 
+>$ git diff HEAD -- ./lib
 
 上面这条命令会显示你当前工作目录下的`lib目录`与上次提交之间的差别(或者更准确的 说是在当前分支)。
 
@@ -220,7 +221,7 @@ git diff 是一个难以置信的有用的工具，可以找出你项目上任�
 >$> git grep --all-match -e '#define' -e SORT_DIRENT
 
 我们也可以查找出符合一个条件(term)且符合两个条件(terms)之一的文件行.　例如我们要找出名字中含有‘PATH'或是'MAX'的常量定义:
->$> git grep -e '#define' --and \( -e PATH -e MAX \) 
+>$> git grep -e '#define' --and \( -e PATH -e MAX \)
 
 
 ###git如何查看某一个文件的详细提交记录
@@ -524,7 +525,7 @@ git branch --contains <commit-ish>
 
 ## Git Aliases
 ```sh
-git config --global alias.<handle> <command> 
+git config --global alias.<handle> <command>
 git config --global alias.st status
 ```
 
@@ -677,7 +678,7 @@ __Alternatives:__
 git branch -m [<old-branch-name>] <new-branch-name>
 ```
 
-## rebases 'feature' to 'master' and merges it in to master 
+## rebases 'feature' to 'master' and merges it in to master
 ```sh
 git checkout feature && git rebase @{-1} && git checkout @{-2} && git merge @{-1}
 ```
@@ -927,12 +928,12 @@ git checkout master && git branch --no-merged
 
 ## Find guilty with binary search
 ```sh
-git bisect start                    # Search start 
-git bisect bad                      # Set point to bad commit 
-git bisect good v2.6.13-rc2         # Set point to good commit|tag 
-git bisect bad                      # Say current state is bad 
-git bisect good                     # Say current state is good 
-git bisect reset                    # Finish search 
+git bisect start                    # Search start
+git bisect bad                      # Set point to bad commit
+git bisect good v2.6.13-rc2         # Set point to good commit|tag
+git bisect bad                      # Say current state is bad
+git bisect good                     # Say current state is good
+git bisect reset                    # Finish search
 
 ```
 

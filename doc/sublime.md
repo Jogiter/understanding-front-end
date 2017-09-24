@@ -44,11 +44,31 @@
 
 ```
 {
-    "default_encoding": "UTF-8",
-    "font_size": 12,
-    "tab_size": 4,
-    "translate_tabs_to_spaces": true,
-    "trim_trailing_white_space_on_save": true
+    {
+		"auto_complete_triggers":
+		[
+			{
+				"characters": "<",
+				"selector": "text.html"
+			},
+			{
+				"characters": "bs3",
+				"selector": "text.html"
+			}
+		],
+		"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+		"default_encoding": "UTF-8",
+		"font_size": 13,
+		"ignored_packages":
+		[
+			"Vintage"
+		],
+		"show_encoding": true,
+		"tab_size": 4,
+		"theme": "Agila Monokai.sublime-theme",
+		"translate_tabs_to_spaces": true,
+		"trim_trailing_white_space_on_save": true
+	}
 }
 ```
 
@@ -61,6 +81,9 @@
 ```
 import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
 ```
+
+- [Package Control no longer showing up in Sublime Text 3](https://github.com/wbond/package_control/issues/874)
+- [Installation - Package Control](https://packagecontrol.io/installation)
 
 ### 用Package Control安装插件的方法
 
@@ -80,12 +103,17 @@ unix：打开`terminal`，输入`sudo echo "50.116.34.243 sublime.wbond.net" >> 
 
 +   [emmet](http://docs.emmet.io/cheat-sheet/)
 +   SideBarEnhancements
-+   FileDiffs
-+   markdown editing
-+   htmlBeautify(/CodeFormatter)
-+   sublime better completion
++   A File Icon
++   All Autocomplete
++   Auto FileName
 +   bracket highlighter // 类似于代码匹配，可以匹配括号，引号等符号内的范围
-+   autoprefixer
-+   autofilename
-+   colorpicker
++   EditorConfig
++   FileDiffs
++   HTML/CSS/JS prettify
++   ESlint
++   Autoprefixer
 +   sublimeCodeIntel
++   markdown editing
++   colorpicker
++   vue syntax highlight
++   vuejs snippets
