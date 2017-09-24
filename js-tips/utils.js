@@ -201,4 +201,34 @@ var GB2312UnicodeConverter = {
     }
 };
 
+// 将对象转换为url的query参数
+export function formatParam(obj) {
+    let str = ''
+    for (let i in obj) {
+        str += `${i}=${obj[i]}&`
+    }
+    return str.slice(0, -1)
+}
+
+// 替换一个字符串中，前start位，后end位中间的字符串，替换为'*'。常用语手机号转星，身份证号转星
+export function string2star(string = '', start = 0, end = 0) {
+    if (!string) {
+        return '';
+    }
+    if (start + end > string.length) {
+        throw new Error('字符串长度小于start和end之和，请检查参数。')
+    }
+    let matches = string.match(new RegExp('^(.{' + start + '})(.*)(.{' + end + '})$'))
+    let middle = matches[2].replace(/./g, s => '*')
+    let ret = matches[1] + middle + matches[3]
+    return `${matches[1]}${middle}${matches[3]}`
+}
+
+/* 格林威治时间修正为本地时间。
+ * [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+ */
+export function getLocaleDate(date) {
+    return new Date(new Date(date).getTime() + new Date().getTimezoneOffset() * 60 * 1000)
+}
+
 export { URL, Is, Tools, Cookie, GUC: GB2312UnicodeConverter, }

@@ -3,7 +3,8 @@
 /*
  * 手机号码格式
  */
-var regMobile = /^1[34578]\d{9}$/;
+var regMobile = /1[3,4,5,8]\d[\s,-]?\d{4}[\s,-]?\d{4}/;  // 不包括171，170等虚拟字段
+var regMobile = /1[3,4,5,7,,8]\d[\s,-]?\d{4}[\s,-]?\d{4}/;  // 包括171，170等虚拟字段
 
 /*
  * 固定电话号码格式
@@ -115,15 +116,11 @@ var regWeb = /^(([hH][tT]{2}[pP][sS]?)|([fF][tT][pP]))\:\/\/[wW]{3}\.[\w-]+\.\w{
  */
 var regDate = /^[1-9]\d{3}([-|\/|\.])?((0\d)|([1-9])|(1[0-2]))\1(([0|1|2]\d)|([1-9])|3[0-1])$/;
 
-/*
- * 调用以上正则表达式的方法
- * 以验证电话号码格式为例
- */
-function onCheck(tel) {
-    if (regMobile.test(tel)) {
-        alert("恭喜通过验证啦！");
 
-    } else {
-        alert("格式不正确！");
-    }
+export function isMoney (n) {
+    return /^\d+$/.test(n)
+}
+
+export function trim (str) {
+    return str.replace(/(^\s*)|(\s*$)/g, '')
 }
