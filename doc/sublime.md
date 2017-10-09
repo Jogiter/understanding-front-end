@@ -44,31 +44,33 @@
 
 ```
 {
-    {
-		"auto_complete_triggers":
-		[
-			{
-				"characters": "<",
-				"selector": "text.html"
-			},
-			{
-				"characters": "bs3",
-				"selector": "text.html"
-			}
-		],
-		"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
-		"default_encoding": "UTF-8",
-		"font_size": 13,
-		"ignored_packages":
-		[
-			"Vintage"
-		],
-		"show_encoding": true,
-		"tab_size": 4,
-		"theme": "Agila Monokai.sublime-theme",
-		"translate_tabs_to_spaces": true,
-		"trim_trailing_white_space_on_save": true
-	}
+	"auto_complete_triggers":
+	[
+		{
+			"characters": "<",
+			"selector": "text.html"
+		},
+		{
+			"characters": "bs3",
+			"selector": "text.html"
+		}
+	],
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"default_encoding": "UTF-8",
+	"font_size": 13,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"show_encoding": true,
+	"tab_size": 4,
+	"theme": "Agila Monokai.sublime-theme",
+	"theme_scrollbar_colored": true,
+	"theme_scrollbar_line": true,
+	"theme_scrollbar_rounded": true,
+	"theme_scrollbar_semi_overlayed": true,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true
 }
 ```
 
@@ -117,3 +119,4 @@ unix：打开`terminal`，输入`sudo echo "50.116.34.243 sublime.wbond.net" >> 
 +   colorpicker
 +   vue syntax highlight
 +   vuejs snippets
++   DocBlockr
