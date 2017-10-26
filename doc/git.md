@@ -4,6 +4,19 @@
 - [Git book官方中文版](http://git-scm.com/book/zh/v2)
 - [window下配置SSH连接GitHub、GitHub配置ssh key](http://www.wuji8.com/meta/469066922.html)
 
+## GitHub访问速度慢的解决方法
+
+1. 打开[http://tool.chinaz.com/dns](http://tool.chinaz.com/dns)，查询`assets-cdn.github.com`。获取`TTL值`最小的。
+2. 修改host文件
+
+```host
+# github-cdn
+151.101.72.133 assets-cdn.github.com
+```
+
+多刷几下，访问速度就一切正常了
+
+
 
 ##[git常用命令](http://www.ruanyifeng.com/blog/2012/07/git.html)
 
