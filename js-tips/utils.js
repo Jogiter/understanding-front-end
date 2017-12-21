@@ -55,11 +55,14 @@ const Cookie = {
             return null;
         }
     },
-    set (name, value) {
-        var Days = 30;
-        var exp = new Date();
-        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    set (name, value, hour, domain) {
+      	var domain = domain ? domain : document.location.host;
+        if (hour) {
+            var expireDate = new Date(new Date().getTime() + hour * 3600 * 1000);
+            document.cookie = name + "=" + escape(value) + "; path=/; domain=" + domain + "; expires=" + expireDate.toGMTString();
+        } else {
+            document.cookie = name + "=" + escape(value) + "; path=/; domain=" + domain;
+        }
     },
     delete (name) {
         var exp = new Date();
