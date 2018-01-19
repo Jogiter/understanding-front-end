@@ -49,7 +49,7 @@
       <p>CSS标准里包含了一些已实现预设效果的函数。你也可以将设定了滤镜效果的SVG文件，通过URL属性引用给SVG滤镜元素.</p>
     </div>
     <div class="col-md-12 col-xs-12">
-      <img id="captain" src="../imgs/captain.jpg" height="220" width="421" alt="" class="img img-circle center-block">
+      <img id="captain" src="../imgs/captain.jpg" height="220" width="421" alt="" class="img center-block">
     </div>
     <div class="col-md-12 col-xs-12">
       <table class="table table-striped table-bordered table-hover">
@@ -216,7 +216,7 @@ $(document).ready(function () {
     function imgPos(){
       var $img = $('#captain');
       var scrollTop = document.body.scrollTop || document.documentElement.scrollTop; // 后面的兼容火狐
-      if(scrollTop >= imgTop){
+      if(scrollTop >= imgTop + $img.height()){
         $img.css({
           'position': 'fixed',
           'z-index': '2'

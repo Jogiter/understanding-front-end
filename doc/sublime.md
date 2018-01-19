@@ -63,7 +63,7 @@
 		"Vintage"
 	],
 	"show_encoding": true,
-	"tab_size": 4,
+	"tab_size": 2,
 	"theme": "Agila Monokai.sublime-theme",
 	"theme_scrollbar_colored": true,
 	"theme_scrollbar_line": true,

@@ -210,6 +210,29 @@ git diff 是一个难以置信的有用的工具，可以找出你项目上任�
 
 可以用类似`git stash apply stash@{1}`的命令来使用在队列中的任意一个`储藏(stashes)`. `git stash clear`则是用来清空这个队列.
 
+
+### [How can I delete a file from git repo?](https://stackoverflow.com/questions/2047465/how-can-i-delete-a-file-from-git-repo)
+
+Use git rm:
+
+```sh
+>git rm file1.txt
+>git commit -m "remove file1.txt"
+```
+
+But if you want to remove the file only from the Git repository and not remove it from the filesystem, use:
+
+```sh
+>git rm --cached file1.txt
+>git commit -m "remove file1.txt"
+```
+
+And to push changes to remote repo
+
+>git push origin branch_name
+
+
+
 ###使用Git Grep进行搜索
 `git grep`命令能让你不用签出(checkout)历史文件, 就能查找它们.
 例如, 你要看 git.git　这个仓库里每个使用'xmmap'函数的地方, 你可以运行下面的命令:
