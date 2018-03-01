@@ -1,4 +1,11 @@
-*.log
-
+# no thx
 node_modules
-test
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+*.log
+Thumbs.db
