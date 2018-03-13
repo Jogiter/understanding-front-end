@@ -232,6 +232,17 @@ And to push changes to remote repo
 >git push origin branch_name
 
 
+### [Unable to track files within Git submodules
+](https://stackoverflow.com/questions/1084969/unable-to-track-files-within-git-submodules#answer-1098621)
+
+If The file is part of a submodule.
+
+```sh
+> git rm --cached path_to_submodule
+> git commit -am 'rm submodules'
+> git add path_to_submodule
+> git commit -am 'add submodules'
+```
 
 ###使用Git Grep进行搜索
 `git grep`命令能让你不用签出(checkout)历史文件, 就能查找它们.
