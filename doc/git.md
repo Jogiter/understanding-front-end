@@ -1,6 +1,6 @@
 ##相关阅读资料
-- [Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
-- [Git book中文版本](http://gitbook.liuhui998.com/1_2.html)
+- [廖雪峰的Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+- [Git book中文版本](http://gitbook.liuhui998.com/index.html)
 - [Git book官方中文版](http://git-scm.com/book/zh/v2)
 - [window下配置SSH连接GitHub、GitHub配置ssh key](http://www.wuji8.com/meta/469066922.html)
 
