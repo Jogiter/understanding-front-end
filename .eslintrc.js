@@ -7,15 +7,14 @@ module.exports = {
     commonjs: true,
     es6: true
   },
-  extends: "standard",
+  extends: 'standard',
   parserOptions: {
-    sourceType: "module"
+    sourceType: 'module'
   },
   rules: {
-    // indent: ["error", 2],
-    quotes: ["off", "single"],
+    indent: ['error', 2],
+    quotes: ['off', 'single']
     // semi: ["error", "always"]
   },
-  globals: {
-  }
-};
+  globals: {}
+}

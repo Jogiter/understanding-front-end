@@ -1,15 +1,14 @@
 module.exports = function (grunt) {
-
   // 加载load-grunt-tasks插件
-  require('load-grunt-tasks')(grunt);
+  require('load-grunt-tasks')(grunt)
   // 加载time-grunt插件
-  require('time-grunt')(grunt);
+  require('time-grunt')(grunt)
 
   var config = {
     app: 'app',
     dist: 'dist',
     build: 'build'
-  };
+  }
 
   // Project configruation
   grunt.initConfig({
@@ -23,7 +22,7 @@ module.exports = function (grunt) {
       build: {
         src: 'src/<%= pkg.name %>.js',
         dest: 'build/<%= pkg.name %>.min.js'
-      },
+      }
     },
 
     copy: {
@@ -38,7 +37,7 @@ module.exports = function (grunt) {
     clean: {
       // dist: '<%= config.dist %>/**/*'
       dist: {
-        src: ['<%= config.dist %>/**/*', '<%= config.build %>/*'],
+        src: ['<%= config.dist %>/**/*', '<%= config.build %>/*']
         // filter: function (filepath) {
         //   return (!grunt.file.isDir(filepath));
         // }
@@ -48,7 +47,7 @@ module.exports = function (grunt) {
         src: ['<%= config.build %>/*'],
         filter: function (filepath) {
           // return (filepath.indexOf('.zip') > -1);
-          return filepath.match(/\w+\.zip/g);
+          return filepath.match(/\w+\.zip/g)
         }
       }
     },
@@ -85,7 +84,6 @@ module.exports = function (grunt) {
       '<%= config.build %>/<%= grunt.template.today("yyyymmddhhMMss") %>.min.zip': '<%= config.app %>/js/*'
     },
 
-
     qunit: {
       files: ['test/**/*.html']
     },
@@ -96,34 +94,33 @@ module.exports = function (grunt) {
       baz: false
     }
 
-  });
+  })
 
   // 加载包含"uglify"任务的插件
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-uglify')
 
   // 默认被执行的任务列表
-  grunt.registerTask('default', ['uglify', 'concat']);
+  grunt.registerTask('default', ['uglify', 'concat'])
 
   // 注册日志任务
   grunt.registerMultiTask('log', 'Log Staff.', function () {
-    grunt.log.writeln(this.target + ':' + this.data);
-  });
+    grunt.log.writeln(this.target + ':' + this.data)
+  })
 
   // 自定义任务
   grunt.registerTask('myTask', 'my "task" task description', function () {
-    grunt.log.writeln('Currently running the default task');
+    grunt.log.writeln('Currently running the default task')
 
     // 在任务内部，执行其他的任务
-    grunt.task.run('log', 'zip');
-  });
+    grunt.task.run('log', 'zip')
+  })
 
   // 自定义的压缩任务:删掉之前的zip文件，压缩文件
   grunt.registerTask('myZip', function () {
-    grunt.task.run('clean:zip', 'zip');
-  });
+    grunt.task.run('clean:zip', 'zip')
+  })
 
-  grunt.log.ok(grunt.template.today('HH:MM:ss'));
-  
-  grunt.log('cancel pull');
-};
+  grunt.log.ok(grunt.template.today('HH:MM:ss'))
 
+  grunt.log('cancel pull')
+}

@@ -1,0 +1,23 @@
+{
+  "name": "understanding-front-end",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Jogiter/understanding-front-end.git",
+  "author": "Jogiter <jogiter.g@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "ava",
+    "format": "eslint --ext .vue,.js --fix ./"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
+  },
+  "dependencies": {
+    "eslint-plugin-node": "^6.0.1"
+  }
+}
