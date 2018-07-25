@@ -7,6 +7,17 @@ window 下某些 node 包安装失败，相关解决办法:
 * [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation)
 * [npm 权限](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
 
+
+[Windows Git Bash shell cannot find commands](https://stackoverflow.com/questions/38879194/windows-git-bash-shell-cannot-find-commands)
+
+```SH
+echo $PATH
+where git
+#C:\Program Files(x86)\Git\bin
+# If git not in PATH, add it:
+PATH="$PATH;C:\Program Files(x86)\Git\bin"
+```
+
 ## node-sass 安装失败的解决办法
 
 > npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
