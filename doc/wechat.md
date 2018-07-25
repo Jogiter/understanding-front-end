@@ -84,3 +84,8 @@ getURL({
 
 // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0d84a5fb2b85a178&redirect_uri=http%3A%2F%2F127.0.0.1%2F%23%2F&response_type=code&scope=snsapi_userinfo&state=123&uin=MjE5MjEzNjQxNA%3D%3D&key=404ed2e603d9fa6e074c9c69d547223f395dec40945aad69f2f6e1874daaf78dcdf952a77c9a800e5068917d4b7f3fef&pass_ticket=QLtl4+AY/QdStFDGYO7wPoMY425LkKIsHIIakyX1ExP/EVYDC1weK7JmS13W2MvyV5DvkzY3EKxdwoF9z+Trnw==
 ```
+
+## 微信内分享其他页面的链接
+
++ 需要用当前页面的 url 来获取签名 `encodeURIComponent(location.href.split('#')[0])`
++ 分享的链接自定义，[该链接域名或路径必须与当前页面对应的公众号JS安全域名一致](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115)
