@@ -281,6 +281,38 @@ function getLocaleDate(date) {
   return new Date(new Date(date).getTime() + new Date().getTimezoneOffset() * 60 * 1000)
 }
 
+/**
+ * 循环控制
+ * @param  {Object} options
+ * totalTimes 总共执行次数
+ * time 每次执行的时间间隔
+ * loop 每次执行的函数
+ * end 循环结束后的回调函数
+ */
+function timerControl(options) {
+    var count = 0;
+    var timer;
+    var CONFIG = {
+        totalTimes: 1,
+        time: 3000,
+        loop: function () {},
+        end: function() {}
+    }
+    options = $.extend({}, CONFIG, options)
+
+    clearInterval(timer);
+
+    timer = setInterval(function() {
+        count++
+        if (count >= options.totalTimes) {
+            clearInterval(timer);
+            options.end()
+        } else {
+            options.loop()
+        }
+    }, options.time)
+}
+
 module.exports = {
   countdown,
   string2star,
