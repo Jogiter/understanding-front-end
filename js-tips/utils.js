@@ -1,50 +1,69 @@
-var URL = {
-  set(key, value, url) {
-    var reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
-    var url = url ? url : location.href;
-    var result = reg.exec(url);
-    if (result) {
-      return url.replace(result[0], key + '=' + value);
-    } else {
-      var reg = /\?(.*)#?(.*)/gi;
-      var search = reg.exec(url);
-      if (search !== null) {
-        return url.replace(search[1], search[1] + '&' + key + '=' + value);;
-      } else {
-        return '';
-      }
-    }
-  },
-  get(key, url) {
-    var reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
-    var url = url ? url : location.href;
-    var result = reg.exec(url);
-    if (result) {
-      return result[2];
+/**
+ * 设置 url 的 query 中参数的键值
+ * @param {String} key   query 中的键
+ * @param {String} value query 中的值
+ * @param {String} url   url 字符串，默认 location.href
+ */
+export function setParam(key, value, url = location.href) {
+  let reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
+  let result = reg.exec(url);
+  if (result) {
+    return url.replace(result[0], `${key}=${value}`);
+  } else {
+    reg = /\?(.*)#?(.*)/gi;
+    let search = reg.exec(url);
+    if (search !== null) {
+      return url.replace(search[1], `${search[1]}&${key}=${value}`);
     } else {
       return '';
     }
   }
 }
-var Is = {
-  android() {
-    return window.navigator.userAgent.indexOf('Android') > -1 || window.navigator.userAgent.indexOf('Adr') > -1;
-  },
-  ios() {
-    return !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-  },
-  mobile() {
-    return !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
-  },
-  wechat() {
-    return navigator.userAgent.indexOf('MicroMessenger') > -1;
-  },
-  qq() {
-    return navigator.userAgent.match(/\sQQ/i) == " qq";
-  }
+
+/**
+ * 获取 url 的 query 中参数 key 的值
+ * @param  {String} key query 中的键
+ * @param  {String} url url 字符串，默认 location.href
+ * @return {String}     key 对应的值
+ */
+export function getParam(key, url = location.href) {
+  let reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
+  let result = reg.exec(url);
+  return result ? result[2] : ''
 }
 
-const Cookie = {
+/**
+ * html 转义，预防 xss
+ * @param  {String} htm htm 字符串
+ * @return {String}     转义后的字符串
+ */
+function encodeHTML (htm) {
+  return String(htm)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+export function isAndroid() {
+  return window.navigator.userAgent.indexOf('Android') > -1 || window.navigator.userAgent.indexOf('Adr') > -1;
+}
+
+export function isIOS() {
+  return !!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+}
+
+export function isWechat() {
+  return navigator.userAgent.indexOf('MicroMessenger') > -1;
+}
+
+export function isMobile() {
+  return !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
+}
+
+
+export const Cookie = {
   get(key) {
     var arr,
       reg = new RegExp("(^| )" + key + "=([^;]*)(;|$)");
@@ -81,124 +100,85 @@ const Cookie = {
   }
 };
 
+/**
+ * 获取元素的实际样式
+ * @param  {String} $e   元素的 DOM
+ * @param  {String} name 样式键名
+ * @return {String}      样式值
+ */
+export function getRealStyle($e, name) {
+  return window.getComputedStyle($e).getPropertyValue(name);
+}
 
-// 弹窗辅助
-var Tools = {
-  maskEvent(x, y, rect, callback) {
-    if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-      // console.log('in element');
-    } else {
-      callback && typeof callback === 'function' && callback();
-    }
-  },
-  getStyle(el, name) {
-    return window.getComputedStyle(el).getPropertyValue(name);
-  },
-  /**
-   * 将数字千分化
-   * 到万的显示'xxxx万'
-   * 到亿的显示'xxxx亿'
-   * 到万亿的显示'xxxx万亿'
-   */
-  formatCoin(num, digits = 2) {
-    digits = Math.pow(10, digits) // 保留小数位数
+/**
+* 将数字千分化
+* 到万的显示'xxxx万'
+* 到亿的显示'xxxx亿'
+* 到万亿的显示'xxxx万亿'
+*/
+export function formatCoin(num, digits = 2) {
+  digits = Math.pow(10, digits) // 保留小数位数
 
-    // 千分化
-    function toThousands(num) {
-      let itg = parseInt(num) // 取整数部分
-      let itg_length = itg.toString().length
-      let length = num.toString().length
-      let dec = num.toString().slice(itg_length, length) // 取小数部分
-      // 整数部分千分，小数部分保留2位附加
-      return (itg || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') + (parseInt(dec * digits) / digits).toString().slice(1);
-    }
+  // 千分化
+  function toThousands(num) {
+    let itg = parseInt(num) // 取整数部分
+    let itg_length = itg.toString().length
+    let length = num.toString().length
+    let dec = num.toString().slice(itg_length, length) // 取小数部分
+    // 整数部分千分，小数部分保留2位附加
+    return (itg || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') + (parseInt(dec * digits) / digits).toString().slice(1);
+  }
 
-    num = parseFloat(num)
-    if (isNaN(num)) {
-      throw new TypeError('parameter must be a number')
-    }
-    if (num < 1e4) {
-      return toThousands(num)
-    } else if (num >= 1e4 && num < 1e8) {
-      return toThousands(num / 1e4) + '万'
-    } else if (num >= 1e8 && num < 1e12) {
-      return toThousands(num / 1e8) + '亿'
-    } else {
-      return toThousands(num / 1e12) + '万亿'
-    }
-  },
-  // 在某个(同步或异步)事件执行后，delay秒后执行。依赖jquery的deferred对象
-  wait: function wait(waitFunction, delay, callback) {
-    var startTime,
-      endTime,
-      wait = delay || 0;
-    startTime = new Date().getTime();
-    // ajax等异步操作 promise|await
-    $.when(waitFunction()).done(function(res) {
-      endTime = new Date().getTime();
-      if (endTime - startTime >= wait) {
-        callback(res);
-      } else {
-        setTimeout(function() {
-          callback(res);
-        }, wait + startTime - endTime);
-      }
-    });
-  },
-  /**
-   * 字符编码数值对应的存储长度：
-   * UCS-2编码(16进制) UTF-8 字节流(二进制)
-   * 0000 - 007F       0xxxxxxx （1字节）
-   * 0080 - 07FF       110xxxxx 10xxxxxx （2字节）
-   * 0800 - FFFF       1110xxxx 10xxxxxx 10xxxxxx （3字节）
-   */
-  getBytesLength: function(string) {
-    var totalLength = 0;
-    var charCode;
-    for (var i = 0; i < string.length; i++) {
-      charCode = string.charCodeAt(i);
-      if (charCode < 0x007f) {
-        totalLength++;
-      } else if ((0x0080 <= charCode) && (charCode <= 0x07ff)) {
-        totalLength += 2;
-      } else if ((0x0800 <= charCode) && (charCode <= 0xffff)) {
-        totalLength += 3;
-      } else {
-        totalLength += 4;
-      }
-    }
-    return totalLength;
-  },
-  /**
-   * Determine the mobile operating system.
-   * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
-   *
-   * @returns {String}
-   */
-  getMobileOperatingSystem: function getMobileOperatingSystem() {
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-      return "Windows Phone";
-    }
-
-    if (/android/i.test(userAgent)) {
-      return "Android";
-    }
-
-    // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      return "iOS";
-    }
-
-    return "unknown";
+  num = parseFloat(num)
+  if (isNaN(num)) {
+    throw new TypeError('parameter must be a number')
+  }
+  if (num < 1e4) {
+    return toThousands(num)
+  } else if (num >= 1e4 && num < 1e8) {
+    return toThousands(num / 1e4) + '万'
+  } else if (num >= 1e8 && num < 1e12) {
+    return toThousands(num / 1e8) + '亿'
+  } else {
+    return toThousands(num / 1e12) + '万亿'
   }
 }
 
-// 时间函数
-  // 根据秒来获取倒计时的时间[天, 时, 分, 秒]
-function countdown(seconds, callback) {
+/**
+ * 字符编码数值对应的存储长度：
+ * UCS-2编码(16进制) UTF-8 字节流(二进制)
+ * 0000 - 007F       0xxxxxxx （1字节）
+ * 0080 - 07FF       110xxxxx 10xxxxxx （2字节）
+ * 0800 - FFFF       1110xxxx 10xxxxxx 10xxxxxx （3字节）
+ */
+export function getBytesLength: function(string) {
+  var totalLength = 0;
+  var charCode;
+  for (var i = 0; i < string.length; i++) {
+    charCode = string.charCodeAt(i);
+    if (charCode < 0x007f) {
+      totalLength++;
+    } else if ((0x0080 <= charCode) && (charCode <= 0x07ff)) {
+      totalLength += 2;
+    } else if ((0x0800 <= charCode) && (charCode <= 0xffff)) {
+      totalLength += 3;
+    } else {
+      totalLength += 4;
+    }
+  }
+  return totalLength;
+}
+
+/**
+ * 倒计时
+ * @param  {Number}   seconds  倒计时时间
+ * @param  {Function} callback(times) 倒计时的 loop
+ * @param  {times}  day   倒计时的天数
+ * @param  {times}  hour  倒计时的小时数
+ * @param  {times}  min   倒计时的分钟数
+ * @param  {times}  sec   倒计时的秒数
+ */
+export function countdown(seconds, callback) {
   var timer
   // fix floating seconds
   seconds = Math.round(seconds)
@@ -207,7 +187,7 @@ function countdown(seconds, callback) {
     return n > 9 ? `${n}` : `0${n}`
   }
 
-  function format(seconds, callback) {
+  function format(seconds) {
     let day = 0
     let hour = 0
     let min = 0
@@ -223,26 +203,24 @@ function countdown(seconds, callback) {
     seconds = seconds % Hour
     min = Math.floor(seconds / Min)
     sec = seconds % Min
-    return callback(prefix(day), prefix(hour), prefix(min), prefix(sec))
+    return { day: prefix(day), hour: prefix(hour), min: prefix(min), sec: prefix(sec) }
   }
 
   function down() {
-    seconds--
-    format(seconds, callback)
-    if (!seconds) {
-      clearInterval(timer)
-    }
+    seconds--;
+    callback(format(seconds))
+    !seconds && clearInterval(timer)
   }
   if (seconds > 0) {
     timer = setInterval(down, 1000)
     down()
   } else {
-    format(0, callback)
+    callback(format(0))
   }
 }
 
-// unicode转码
-var GB2312UnicodeConverter = {
+// unicode & 汉字 转换
+export const converter = {
   ToUnicode: function(str) {
     return escape(str).toLocaleLowerCase().replace(/%u/gi, '\\u');
   },
@@ -251,17 +229,15 @@ var GB2312UnicodeConverter = {
   }
 };
 
-// 将对象转换为url的query参数
-function formatParam(obj) {
-  let str = ''
-  for (let i in obj) {
-    str += `${i}=${obj[i]}&`
-  }
-  return str.slice(0, -1)
-}
-
-// 替换一个字符串中，前start位，后end位中间的字符串，替换为'*'。常用语手机号转星，身份证号转星
-function string2star(string = '', start = 0, end = 0) {
+/**
+ * 常用语手机号转星，身份证号转星
+ * 前 start 位，后 end 位中间的字符串，替换为'*'
+ * @param  {String} [string=''] 字符串
+ * @param  {Number} [start=0]   不需要被替换的位数，从前开始计算
+ * @param  {Number} [end=0]     不需要被替换的位数，从后开始计算
+ * @return {String}             替换后的字符串
+ */
+export function string2star(string = '', start = 0, end = 0) {
   if (!string) {
     return '';
   }
@@ -272,55 +248,4 @@ function string2star(string = '', start = 0, end = 0) {
   let middle = matches[2].replace(/./g, s => '*')
   let ret = matches[1] + middle + matches[3]
   return `${matches[1]}${middle}${matches[3]}`
-}
-
-/* 格林威治时间修正为本地时间。
- * [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
- */
-function getLocaleDate(date) {
-  return new Date(new Date(date).getTime() + new Date().getTimezoneOffset() * 60 * 1000)
-}
-
-/**
- * 循环控制
- * @param  {Object} options
- * totalTimes 总共执行次数
- * time 每次执行的时间间隔
- * loop 每次执行的函数
- * end 循环结束后的回调函数
- */
-function timerControl(options) {
-    var count = 0;
-    var timer;
-    var CONFIG = {
-        totalTimes: 1,
-        time: 3000,
-        loop: function () {},
-        end: function() {}
-    }
-    options = $.extend({}, CONFIG, options)
-
-    clearInterval(timer);
-
-    timer = setInterval(function() {
-        count++
-        if (count >= options.totalTimes) {
-            clearInterval(timer);
-            options.end()
-        } else {
-            options.loop()
-        }
-    }, options.time)
-}
-
-module.exports = {
-  countdown,
-  string2star,
-  getLocaleDate,
-  formatParam,
-  URL,
-  Is,
-  Tools,
-  Cookie,
-  GUC: GB2312UnicodeConverter,
 }
