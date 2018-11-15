@@ -249,3 +249,19 @@ export function string2star(string = '', start = 0, end = 0) {
   let ret = matches[1] + middle + matches[3]
   return `${matches[1]}${middle}${matches[3]}`
 }
+
+export function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+    )
+}
+
+export function isMac() {
+  return navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)
+}
+
+// 获取今天剩余时间
+export function todayLeft() {
+    var tomarrow = new Date(new Date().getTime() + 3600 * 24 * 1000).toDateString()
+    return new Date(tomarrow).getTime() - new Date().getTime()
+}
