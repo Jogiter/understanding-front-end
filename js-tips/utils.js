@@ -265,3 +265,14 @@ export function todayLeft() {
     var tomarrow = new Date(new Date().getTime() + 3600 * 24 * 1000).toDateString()
     return new Date(tomarrow).getTime() - new Date().getTime()
 }
+
+// https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+export function isElementInViewport (el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+    );
+}
