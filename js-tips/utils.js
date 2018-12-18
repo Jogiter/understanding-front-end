@@ -4,20 +4,27 @@
  * @param {String} value query 中的值
  * @param {String} url   url 字符串，默认 location.href
  */
-export function setParam(key, value, url = location.href) {
-  let reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
-  let result = reg.exec(url);
+export function setUrlParam(key, value, url = location.href) {
+  const hashIndex = url.indexOf('#');
+  let hashString = '';
+  let ret = null;
+  if (hashIndex > -1) {
+    hashString = url.slice(hashIndex);
+    url = url.slice(0, hashIndex);
+  }
+  const reg = new RegExp(`(${key})=([^&]*)`, 'ig');
+  const result = reg.exec(url);
   if (result) {
-    return url.replace(result[0], `${key}=${value}`);
+    ret = url.replace(result[0], key + '=' + value) + hashString;
   } else {
-    reg = /\?(.*)#?(.*)/gi;
-    let search = reg.exec(url);
+    const search = /\?(.*)#?(.*)/gi.exec(url);
     if (search !== null) {
-      return url.replace(search[1], `${search[1]}&${key}=${value}`);
+      ret = url.replace(search[1], search[1] + '&' + key + '=' + value) + hashString;
     } else {
-      return '';
+      ret = `${url}?${key}=${value}${hashString}`;
     }
   }
+  return ret;
 }
 
 /**
@@ -26,8 +33,8 @@ export function setParam(key, value, url = location.href) {
  * @param  {String} url url 字符串，默认 location.href
  * @return {String}     key 对应的值
  */
-export function getParam(key, url = location.href) {
-  let reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
+export function getUrlParam(key, url = location.href) {
+  let reg = new RegExp(`(${key})=([^&]*)`, 'ig');
   let result = reg.exec(url);
   return result ? result[2] : ''
 }
