@@ -4,20 +4,27 @@
  * @param {String} value query 中的值
  * @param {String} url   url 字符串，默认 location.href
  */
-export function setParam(key, value, url = location.href) {
-  let reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
-  let result = reg.exec(url);
+export function setUrlParam(key, value, url = location.href) {
+  const hashIndex = url.indexOf('#');
+  let hashString = '';
+  let ret = null;
+  if (hashIndex > -1) {
+    hashString = url.slice(hashIndex);
+    url = url.slice(0, hashIndex);
+  }
+  const reg = new RegExp(`(${key})=([^&]*)`, 'ig');
+  const result = reg.exec(url);
   if (result) {
-    return url.replace(result[0], `${key}=${value}`);
+    ret = url.replace(result[0], key + '=' + value) + hashString;
   } else {
-    reg = /\?(.*)#?(.*)/gi;
-    let search = reg.exec(url);
+    const search = /\?(.*)#?(.*)/gi.exec(url);
     if (search !== null) {
-      return url.replace(search[1], `${search[1]}&${key}=${value}`);
+      ret = url.replace(search[1], search[1] + '&' + key + '=' + value) + hashString;
     } else {
-      return '';
+      ret = `${url}?${key}=${value}${hashString}`;
     }
   }
+  return ret;
 }
 
 /**
@@ -26,8 +33,8 @@ export function setParam(key, value, url = location.href) {
  * @param  {String} url url 字符串，默认 location.href
  * @return {String}     key 对应的值
  */
-export function getParam(key, url = location.href) {
-  let reg = new RegExp('(' + key + ')=([^&]*)', 'ig');
+export function getUrlParam(key, url = location.href) {
+  let reg = new RegExp(`(${key})=([^&]*)`, 'ig');
   let result = reg.exec(url);
   return result ? result[2] : ''
 }
@@ -248,4 +255,31 @@ export function string2star(string = '', start = 0, end = 0) {
   let middle = matches[2].replace(/./g, s => '*')
   let ret = matches[1] + middle + matches[3]
   return `${matches[1]}${middle}${matches[3]}`
+}
+
+export function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+    )
+}
+
+export function isMac() {
+  return navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)
+}
+
+// 获取今天剩余时间
+export function todayLeft() {
+    var tomarrow = new Date(new Date().getTime() + 3600 * 24 * 1000).toDateString()
+    return new Date(tomarrow).getTime() - new Date().getTime()
+}
+
+// https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+export function isElementInViewport (el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+    );
 }
