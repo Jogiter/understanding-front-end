@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>微信保存和分享图片</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/night.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/lib/css/zenburn.min.css">
+  <style>
+    .reveal section img {
+      max-height: 60vh;
+      max-width: 60vw;
+    }
+    iframe {
+      width: 60vw;
+      height: 40vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        ### 微信保存和分享图片
+
+        *  讲师：丁周裕
+        *  部门：商业产品中心会员商品中心一组
+      </section>
+      <section data-markdown>
+        ![XMEN](https://img.jogiter.cn/share/xl2019-annual-ceremony.jpg)
+      </section>
+      <section data-markdown>
+        #### 目录
+
+        +  canvas 简介
+        +  CORS
+        +  html2canvas 介绍
+        +  retina 屏幕下绘制模糊解决方案
+        +  图片模糊解决方案
+        +  demos
+      </section>
+      <section>
+        <section data-markdown>
+          ####  Canvas
+        </section>
+        <section data-markdown>
+          ![canvas-pc](https://img.jogiter.cn/share/caniuse-canvas-pc.jpg)
+        </section>
+        <section data-markdown>
+          ![canvas-wap](https://img.jogiter.cn/share/caniuse-canvas.jpg)
+        </section>
+        <section data-markdown>
+          +  [MDN:HTMLCanvasElement](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement)
+          +  [MDN:CanvasRenderingContext2D](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D)
+        </section>
+      </section>
+      <section>
+        <section data-markdown style="font-size: 30px;">
+          ####  [CORS](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+
+          跨域资源共享(CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器  让运行在一个 origin (domain) 上的Web应用被准许访问来自不同源服务器上的指定的资源。当一个资源从与该资源本身所在的服务器**不同的域、协议或端口**请求一个资源时，资源会发起一个**跨域 HTTP 请求**。
+
+          这种机制可以避免未经许可拉取远程网站信息而导致的用户隐私泄露。
+        </section>
+        <section data-markdown>
+          ![cors](https://img.jogiter.cn/share/cors.jpg)
+        </section>
+        <section data-markdown style="font-size: 20px; text-align: left;">
+          HTML 规范中图片有一个 [crossorigin](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img#attr-crossorigin) 属性，结合合适的 CORS 响应头，就可以实现在画布中使用跨域 <img> 元素的图像。
+
+          尽管不通过 CORS 就可以在画布中使用图片，但是这会污染画布。一旦画布被污染，你就无法读取其数据。例如，你不能再使用画布的 toBlob(), toDataURL() 或 getImageData() 方法，调用它们会抛出安全错误。
+
+          ```{r}
+          Uncaught SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported.
+          ```
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          ####  html2canvas 介绍
+        </section>
+        <section data-markdown>
+          #### 浏览器兼容性
+
+          >库在以下浏览器上应该可以正常工作（需要 Promise polyfill）
+
+          +  Firefox 3.5+
+          +  Google Chrome
+          +  Opera 12+
+          +  IE9+
+          +  Edge
+          +  Safari 6+
+        </section>
+        <section data-markdown>
+          #### 使用方法：html2canvas(element, [options](http://html2canvas.hertzen.com/configuration))
+
+          ```js
+          html2canvas(document.body, {
+            useCORS: true // 默认不开启 CORS
+          }).then(function(canvas) {
+            document.body.appendChild(canvas);
+          });
+          ```
+        </section>
+        <section data-markdown style="font-size: 20px;">
+          更多配置：**[options](http://html2canvas.hertzen.com/configuration)**
+
+          |Name|Default|Description|
+          |:---|:---|:---|
+          |async|true|是否异步解析和呈现元素|
+          |allowTaint|false|是否允许`cross-origin`图像污染画布|
+          |canvas|null|使用现有的`canvas`元素用作绘图的基础|
+          |imageTimeout|15000|加载图像的超时（以毫秒为单位）。 设置为0以禁用超时。|
+          |ignoreElements|(element) => false|断言函数，用于从渲染中删除匹配元素。|
+          |onclone|null|在克隆文档进行渲染时调用的回调函数可用于修改将在不影响原始源文档的情况下呈现的内容|
+          |useCORS|false|是否尝试使用CORS从服务器加载图像|
+          |width|Element width|画布的宽度|
+          |height|Element height|画布的高度|
+        </section>
+        <section data-markdown style="font-size: 20px;">
+          [不支持的 CSS 属性](http://html2canvas.hertzen.com/features)
+
+          + background-blend-mode
+          + border-image
+          + box-decoration-break
+          + box-shadow
+          + filter
+          + font-variant-ligatures
+          + mix-blend-mode
+          + object-fit
+          + repeating-linear-gradient()
+          + writing-mode
+          + zoom
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          #### [retina 屏幕下绘制模糊解决方案](https://www.html5rocks.com/en/tutorials/canvas/hidpi/)
+        </section>
+        <section data-markdown>
+          ```js
+          function setupCanvas(canvas) {
+            // Get the device pixel ratio, falling back to 1.
+            var dpr = window.devicePixelRatio || 1;
+            // Get the size of the canvas in CSS pixels.
+            var rect = canvas.getBoundingClientRect();
+            // Give the canvas pixel dimensions of their CSS
+            // size * the device pixel ratio.
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            var ctx = canvas.getContext('2d');
+            // Scale all drawing operations by the dpr, so you
+            // don't have to worry about the difference.
+            ctx.scale(dpr, dpr);
+            return ctx;
+          }
+
+          // Now this line will be the same size on the page
+          // but will look sharper on high-DPI devices!
+          var ctx = setupCanvas(document.querySelector('.my-canvas'));
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(100, 100);
+          ctx.lineTo(200, 200);
+          ctx.stroke();
+          ```
+        </section>
+        <section data-markdown>
+          [demo](https://blog.jogiter.cn/test/html2canvas/dpr.html)
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          ####  canvas 绘制模糊
+        </section>
+        <section data-markdown style="font-size: 20px; text-align: left;">
+          >修改 imageSmoothingEnabled 值
+
+          >CanvasRenderingContext2D.imageSmoothingEnabled 是 Canvas 2D API 用来设置图片是否平滑的属性，true表示图片平滑（默认值），false表示图片不平滑。当我们获取 imageSmoothingEnabled 属性值时， 它会返回最新设置的值。
+
+          >以缩放画布为例，这个属性对像素为主的游戏很有用。默认的改变大小的算法会造成图片模糊并且破坏图片原有的像素。 如果那样的话，设置属性值为false。
+        </section>
+        <section data-markdown>
+          ```js
+          var canvas = document.getElementById("canvas");
+          var ctx = canvas.getContext("2d");
+
+          var img = new Image();
+          img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
+          img.onload = function() {
+           	ctx.mozImageSmoothingEnabled = false;
+           	ctx.webkitImageSmoothingEnabled = false;
+           	ctx.msImageSmoothingEnabled = false;
+           	ctx.imageSmoothingEnabled = false;
+           	ctx.drawImage(img, 0, 0, 400, 200);
+          }
+          ```
+        </section>
+        <section data-markdown>
+          [demo](https://blog.jogiter.cn/test/html2canvas/dpr.html)
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          #### demos
+        </section>
+        <section>
+          <img src="data:image/png;base64,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" alt="">
+        </section>
+        <section>
+          <iframe height='399' scrolling='no' title='[CANVAS] Video + Canvas' src='https://codepen.io/Jogiter/embed/preview/qLpeaM/?height=399&theme-id=dark&default-tab=result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
+            See the Pen <a href='https://codepen.io/Jogiter/pen/qLpeaM/'>[CANVAS] Video + Canvas</a> by Jogiter (<a href='https://codepen.io/Jogiter'>@Jogiter</a>) on <a href='https://codepen.io'>CodePen</a>.
+          </iframe>
+        </section>
+      </section>
+      <section data-markdown>
+        ####   阅读链接
+
+        - [html2canvas](https://html2canvas.hertzen.com/configuration)
+        - [High DPI Canvas](https://www.html5rocks.com/en/tutorials/canvas/hidpi/)
+        - [一次 H5 「保存页面为图片」 的踩坑之旅](https://juejin.im/post/5a17c5e26fb9a04527254689)
+        - [启用了 CORS 的图片](https://developer.mozilla.org/zh-CN/docs/Web/HTML/CORS_enabled_image)
+        - [浏览器的同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
+        - [将图像转换为 base64](https://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript)
+        - [CanvasRenderingContext2D](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D)
+      </section>
+      <section data-markdown>
+        THANKS
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/js/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/highlight/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/markdown/marked.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/markdown/markdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/zoom-js/zoom.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
