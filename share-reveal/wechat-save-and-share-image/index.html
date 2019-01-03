@@ -72,7 +72,9 @@
 
           尽管不通过 CORS 就可以在画布中使用图片，但是这会污染画布。一旦画布被污染，你就无法读取其数据。例如，你不能再使用画布的 toBlob(), toDataURL() 或 getImageData() 方法，调用它们会抛出安全错误。
 
-          ![]()
+          ```{r}
+          Uncaught SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported.
+          ```
         </section>
       </section>
       <section>
@@ -166,8 +168,7 @@
           ```
         </section>
         <section data-markdown>
-          todo: 增加模糊的图片
-          ![]()
+          [demo](https://blog.jogiter.cn/test/html2canvas/dpr.html)
         </section>
       </section>
       <section>
@@ -198,8 +199,7 @@
           ```
         </section>
         <section data-markdown>
-          todo: 增加模糊的图片
-          ![]()
+          [demo](https://blog.jogiter.cn/test/html2canvas/dpr.html)
         </section>
       </section>
       <section>
