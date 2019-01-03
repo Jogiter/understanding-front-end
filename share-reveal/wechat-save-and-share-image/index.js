@@ -1,0 +1,3 @@
+Reveal.initialize({
+  transition: 'convex'
+});
