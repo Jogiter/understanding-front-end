@@ -283,3 +283,10 @@ export function isElementInViewport (el) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
     );
 }
+
+// 获取分页的页数
+export function pagination(total, pagesize = 10) {
+ let q = Math.floor(total / pagesize)
+ let r = total % pagesize
+ return r === 0 ? q : q + 1
+}
