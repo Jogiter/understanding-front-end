@@ -1,8 +1,16 @@
 # 前端笔记
 
 分享和记录前端相关的学习技术和资料
-- [前端规范](./understanding-front-end/doc/frontend.md)
-- [css-secrets](./css-tricks/css-secrets/supports/supports.html)
+- rule
+  - [前端规范](./doc/frontend.md)
+- css
+  - [3D透视](./css-tricks/3d-img.html)
+  - [css-secrets](./css-tricks/css-secrets/supports/supports.html)
+  - [CSS滤镜](./css-tricks/-webkit-filter.html)
+- share
+  - [git 教程](./share-reveal/git/index.html)
+  - [微信保存和分享图片](./share-reveal/wechat-save-and-share-image/index.html)
+
 
 ----
 
