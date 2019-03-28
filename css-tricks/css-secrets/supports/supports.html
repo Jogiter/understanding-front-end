@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Supports & return</title>
+  <base target="_blank" />
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  <h2><a href="http://play.csssecrets.io/">CSS-SECRETS</a></h2>
+
+  <div class="linear-gradient"></div>
+
+  <section>
+    <h2>DRY=don`t repeat youself</h2>
+    <div class="textshadow">
+      <h1>text-shadow</h1>
+      <button class="btn-em">btn-em</button>
+      <button class="btn">btn</button>
+      <button class="btn ok">btn ok</button>
+      <button class="btn cancel">btn cancel</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>css variable</h2>
+    <ul>
+      <li>01</li>
+      <li>02</li>
+      <li>03</li>
+      <li>04</li>
+      <li>05</li>
+    </ul>
+
+    <ol>
+      <li>01</li>
+      <li>02</li>
+      <li>03</li>
+      <li>04</li>
+      <li>05</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>hsl color: (i,100%,50%)</h2>
+    <div class="flex flex-jcsa hsl"></div>
+  </section>
+
+  <section>
+    <h2>background-origin: content-box</h2>
+    <div class="flex flex-jcsa">
+      <div class="bgp-not-dry">
+        Code pirate
+      </div>
+      <div class="bgp-dry">
+        Code pirate
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>box-shadow, outline</h2>
+    <div class="flex flex-jcsa">
+      <div class="flex-item two-div">
+        <div>
+          I have a nice subtle inner rounding,
+          don't I look pretty?
+        </div>
+      </div>
+      <div class="flex-item one-div">
+        I have a nice subtle inner rounding,
+        don't I look pretty?
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>background-size</h2>
+    <div class="flex flex-jcsa">
+      <div class="flex-item horizontal"></div>
+      <div class="flex-item horizontal-stripes"></div>
+      <div class="flex-item vertical-stripes"></div>
+      <div class="flex-item diagonal-stripes"></div>
+      <div class="flex-item subtle-stripes"></div>
+      <div class="flex-item angle">
+        this text is a placeholder. <br>
+        made by css3 linear-gradient
+      </div>
+      <div class="flex-item angles">
+        this text is a placeholder. <br>
+        made by css3 linear-gradient
+      </div>
+      <div class="flex-item circles">
+        this text is a placeholder. <br>
+        made by css3 linear-gradient
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>::before ::after</h2>
+    <div class="flex flex-jcsa">
+      <div class="table">
+        <span class="table-cell">Click Me</span>
+      </div>
+      <div class="table">
+        <span class="table-cell">垂直居中</span>
+      </div>
+      <div class="picture">
+        <img src="https://img.jogiter.cn/tennis/fdr-bt.jpg" alt="roger federer">
+      </div>
+    </div>
+    <div class="tabs">
+      <nav>
+        <a href="javascript:;">nav01</a>
+        <a href="javascript:;" class="selected">nav02</a>
+        <a href="javascript:;">nav03</a>
+      </nav>
+      <main>
+        Content area
+        <a href="http://dabblet.com/gist/1345dc9399dc8e794502">trapezoid-tabs</a>
+      </main>
+    </div>
+  </section>
+
+  <section>
+    <h2>Transform</h2>
+    <div class="flex flex-jcsa">
+      <div class="pie animation"></div>
+      <div class="pie" style="animation-delay: -20s;">20%</div>
+      <div class="pie" style="animation-delay: -60s;">60%</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>毛玻璃效果</h2>
+    <div class="flex flex-jcsa">
+      <div class="filter-glass">
+        <blockquote>
+          "The only way to get rid of a tempation[...]"
+          <footer>--
+            <cite>
+              Oscar Wilde,
+              The Picture of Dorian Gray
+            </cite>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>斑马条纹</h2>
+    <div class="flex flex-jcsa">
+<pre><code>while (true) {
+	var d = new Date();
+	if (d.getDate()==1 &amp;&amp;
+      d.getMonth()==3) {
+		alert("TROLOLOL");
+	}
+}</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>自定义 checkbox</h2>
+    <div class="flex flex-jcsa">
+      <input type="checkbox" id="awesome" autofocus />
+      <label for="awesome">Awesome!</label>
+      <br />
+      <input type="checkbox" id="awesome2" checked />
+      <label for="awesome2">Awesome!</label>
+      <br />
+      <input type="checkbox" id="awesome3" disabled />
+      <label for="awesome3">Awesome!</label>
+      <br />
+      <input type="checkbox" id="awesome4" checked disabled />
+      <label for="awesome4">Awesome!</label>
+    </div>
+  </section>
+
+  <section>
+    <h2>image-slider <small>应用：<a href="https://zhitu.isux.us/">https://zhitu.isux.us/</a></small></h2>
+    <div class="flex flex-jcsa">
+      <div class="image-slider">
+        <div><img src="http://csssecrets.io/images/adamcatlace-before.jpg" alt="Before" /></div>
+        <img src="http://csssecrets.io/images/adamcatlace.jpg" />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>帧动画 (不使用 gif) <a href="http://cubic-bezier.com/">贝塞尔曲线</a></h2>
+    <div class="flex flex-jcsa">
+      <div class="loader">Loading…</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>闪烁效果</h2>
+    <div class="flex flex-jcsa">
+      <p class="blink-smooth-1">Peek-a-boo!</p>
+      <p class="blink-smooth-2">Peek-a-boo!</p>
+      <p class="blink">Peek-a-boo!</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>打字动画</h2>
+    <div class="flex flex-jcsa">
+      <h1 class="typing">CSS is awesome!</h1>
+    </div>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:disabled, [disabled], [aria-disabled="true"] {
+  cursor: not-allowed;
+}
+img {
+  max-width: 100%;
+}
+body {
+  max-width: 1080px;
+  margin: auto;
+  padding: 30px 15px;
+}
+div {
+  min-width: 50px;
+  min-height: 50px;
+}
+.flex {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flex-jcsa {
+  justify-content: space-around;
+}
+
+.flex-jcsb {
+  justify-content: space-between;
+}
+
+.flex-item {
+  width: 40%;
+  height: 200px;
+  margin: 10px 15px;
+}
+
+.linear-gradient {
+  background-color: #ef7903;
+  background: -moz-linear-gradient(left top, yellow, #ef7903);
+  background: -o-linear-gradient(left top, yellow, #ef7903);
+  background: -ms-linear-gradient(left top, yellow, #ef7903);
+  background: linear-gradient(to left top, yellow, #ef7903);
+}
+
+/* 特性检测 */
+h1 {
+  color: gray;
+}
+
+@supports (text-shadow: 0 0 0.3rem gray) {
+  .textshadow h1 {
+    color: transparent;
+    text-shadow: 0 0 0.3rem gray;
+  }
+}
+
+.btn-em {
+  padding: .3em .8em;
+  border: 1px solid #446d88;
+  background: #58a linear-gradient(#77a0bb, #58a);
+  border-radius: .2em;
+  box-shadow: 0 .05em .25em  #335166;
+  color: white;
+  text-shadow: 0 -.05em .05em #335166;
+  font-size: 125%;
+  line-height: 1.5;
+  outline: none;
+}
+
+.btn {
+  padding: .3em .8em;
+  border: 1px solid rgba(0,0,0,.1);
+  background: #58a linear-gradient(hsla(0,0%,100%,.2), transparent);
+  border-radius: .2em;
+  box-shadow: 0 .05em .25em  rgba(0,0,0,.5);
+  color: white;
+  text-shadow: 0 -.05em .05em rgba(0,0,0,.5);
+  font-size: 125%;
+  line-height: 1.5;
+  outline: none;
+}
+.btn.cancel {
+  background-color: #c00;
+}
+.btn.ok {
+  background-color: #6b0;
+}
+
+
+/* 原生特性 */
+ul {
+  --accent-color: purple;
+}
+ol {
+  --accent-color: rebeccapurple;
+}
+li {
+  background: var(--accent-color);
+  margin: 5px 0;
+}
+
+
+
+.bgp-not-dry {
+  width: 40%;
+  height: 200px;
+  font-size: 30px;
+  line-height: 1.5;
+  padding: 10px;
+  background: url('https://img.jogiter.cn/fdr100.jpg') no-repeat #58a;
+  background-position: right 10px bottom 10px;
+  -webkit-background-size: 200px;
+  background-size: 200px;
+}
+
+.bgp-dry {
+  width: 40%;
+  height: 200px;
+  font-size: 30px;
+  line-height: 1.5;
+  padding: 15px;
+  background: url('https://img.jogiter.cn/fdr100.jpg') no-repeat #58a bottom right;
+  -webkit-background-origin: content-box;
+  background-origin: content-box;
+  -webkit-background-size: 200px;
+  background-size: 200px;
+}
+
+
+
+.two-div {
+  background-color: #655;
+  padding: .8em;
+}
+.two-div > div {
+  background: tan;
+  border-radius: .8em;
+  padding: 1em;
+  height: 100%;
+  box-sizing: border-box;
+}
+.one-div {
+  background: tan;
+  padding: 10px;
+  border-radius: .8em;
+  outline: .6em solid #655;
+  -webkit-box-shadow: 0 0 0 .4em #655;
+  box-shadow: 0 0 0 .4em #655;
+}
+
+.horizontal {
+  background: linear-gradient(#fb3 50%, #58a 0);
+  -webkit-background-size: 100% 30px;
+  background-size: 100% 30px;
+  /* background: repeating-linear-gradient(#fb3, #fb3 15px, #58a 0, #58a 30px); */
+}
+.horizontal-stripes {
+  background: linear-gradient(#fb3 33.3%, #58a 0, #58a 66.6%, yellowgreen 0);
+  -webkit-background-size: 100% 30px;
+  background-size: 100% 30px;
+}
+.vertical-stripes {
+  background: linear-gradient(to right, #fb3 33.3%, #58a 0, #58a 66.6%, yellowgreen 0);
+  -webkit-background-size: 30px 100%;
+  background-size: 30px 100%;
+}
+.diagonal-stripes {
+  background: repeating-linear-gradient(45deg, #fb3 0, #fb3 25%, #58a 0, #58a 50%);
+  /* background-size 根据角度计算得来 page32 */
+  -webkit-background-size: 42.42px 42.42px;
+  background-size: 42.42px 42.42px;
+}
+.subtle-stripes {
+  /* background: repeating-linear-gradient(30deg, #79b, #79b 15px, #58a 0, #58a 30px); */
+  background: hsl(30,100%,50%);
+  background-image: repeating-linear-gradient(30deg,
+      hsla(0,0%,100%,.2),
+      hsla(0,0%,100%,.2) 15px,
+      transparent 0,
+      transparent 30px);
+}
+.angle,
+.angles,
+.circles {
+  padding: 1.3em 1.8em;
+  background: #58a;
+}
+.angle {
+  background: linear-gradient(-45deg, transparent 15px, #58a 0);
+}
+.angles {
+  background: linear-gradient(135deg, transparent 15px, #58a 0) top left,
+              linear-gradient(-135deg, transparent 15px, #fb3 0) top right,
+              linear-gradient(-45deg, transparent 15px, #655 0) bottom right,
+              linear-gradient(45deg, transparent 15px, #9ac 0) bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+}
+.circles {
+  background: radial-gradient(circle at top left, transparent 15px, #58a 0) top left,
+              radial-gradient(circle at top right, transparent 15px, #fb3 0) top right,
+              radial-gradient(circle at bottom right, transparent 15px, #655 0) bottom right,
+              radial-gradient(circle at bottom left, transparent 15px, #9ac 0) bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* ::before ::after */
+.table {
+  display: table;
+  min-width: 100px;
+  min-height: 50px;
+}
+.table-cell {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.table-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #58a;
+  transform: skewX(30deg);
+}
+
+.picture {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  overflow: hidden;
+  --picture-width: 100px;
+}
+.picture > img {
+  width: var(--picture-width);
+  height: var(--picture-width);
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+nav {
+  position: relative;
+  display: inline-block;
+  padding: .3em 1em 0;
+}
+nav > a {
+  position: relative;
+	display: inline-block;
+	padding: .3em 1em 0;
+	color: inherit;
+	text-decoration: none;
+	margin: 0 -.3em;
+}
+nav > a::before,
+main {
+	border: .1em solid rgba(0,0,0,.4);
+}
+nav > a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: #ccc;
+  border-bottom: none;
+  border-radius: .5em 0.5em 0 0;
+  -webkit-box-shadow: 0 .15em white inset;
+  box-shadow: 0 .15em white inset;
+  transform: perspective(.5em) rotateX(5deg);
+  transform-origin: bottom;
+}
+nav a.selected { z-index: 2;}
+nav a.selected::before {
+	background-color: #eee;
+	margin-bottom: -.08em;
+}
+main {
+	display: block;
+	margin-bottom: 1em;
+	background: #eee;
+	padding: 1em;
+	border-radius: .15em;
+}
+
+.pie {
+  position: relative;
+  width: 100px;
+  line-height: 100px;
+  border-radius: 50%;
+  background: yellowgreen;
+  background-image: linear-gradient(to right, transparent 50%, #655 0);
+  text-align: center;
+  color: transparent;
+}
+.pie::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  border-radius: 0 100% 100% 0 / 50%;
+  background-color: inherit;
+  transform-origin: left;
+  animation: spin 50s linear infinite,
+              bg 100s step-end infinite;
+  animation-play-state: paused;
+  animation-delay: inherit;
+}
+.pie.animation::before {
+  animation: spin 3s linear infinite,
+              bg 6s step-end infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
+@keyframes bg {
+  50% {
+    background: #655;
+  }
+}
+
+.filter-glass::before {
+  background: url('https://img.jogiter.cn/fdr100.jpg') 0 / cover fixed;
+}
+.filter-glass {
+  position: relative;
+	margin: 0 auto;
+	padding: 1em;
+	max-width: 23em;
+	background: hsla(0,0%,100%,.25) border-box;
+	overflow: hidden;
+	border-radius: .3em;
+	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3) inset,
+	            0 .5em 1em rgba(0, 0, 0, 0.6);
+	text-shadow: 0 1px 1px hsla(0,0%,100%,.3);
+}
+.filter-glass::before {
+  content: '';
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	margin: -30px;
+	z-index: -1;
+	-webkit-filter: blur(20px);
+	filter: blur(20px);
+}
+
+/* 斑马条纹 */
+pre {
+	padding: .5em;
+	line-height: 1.4;
+	background: hsl(20, 50%, 95%);
+	background-image: linear-gradient(
+	                  rgba(120,0,0,.1) 50%, transparent 0);
+	background-size: auto 2.8em;
+	background-origin: content-box;
+	font-family: Consolas, Monaco, monospace;
+  tab-size: 4;
+}
+
+code { font: inherit }
+
+/**
+ * Custom checkboxes
+ */
+input[type="checkbox"] {
+	position: absolute;
+	clip: rect(0,0,0,0);
+}
+input[type="checkbox"] + label::before {
+	content: '\a0';
+	display: inline-block;
+	vertical-align: .2em;
+	width: .8em;
+	height: .8em;
+	margin-right: .2em;
+	border-radius: .2em;
+	background: silver;
+	text-indent: .15em;
+	line-height: .65;
+}
+input[type="checkbox"]:checked + label::before {
+	content: '\2713';
+	background: yellowgreen;
+}
+input[type="checkbox"]:focus + label::before {
+	box-shadow: 0 0 .1em .1em #58a;
+}
+input[type="checkbox"]:disabled + label::before {
+	background: gray;
+	box-shadow: none;
+	color: #555;
+	cursor: not-allowed;
+}
+
+/**
+ * Interactive image comparison - with CSS resize
+ */
+.image-slider {
+	position:relative;
+	display: inline-block;
+}
+.image-slider > div {
+	position: absolute;
+	top: 0; bottom: 0; left: 0;
+	width: 50%;
+	max-width: 100%;
+	overflow: hidden;
+	resize: horizontal;
+}
+.image-slider > div:before {
+	content: '';
+	position: absolute;
+	right: 0; bottom: 0;
+	width: 12px; height: 12px;
+	padding: 5px;
+	background: linear-gradient(-45deg, white 50%, transparent 0);
+	background-clip: content-box;
+	cursor: ew-resize;
+	-webkit-filter: drop-shadow(0 0 2px black);
+	filter: drop-shadow(0 0 2px black);
+}
+.image-slider img {
+	display: block;
+	user-select: none;
+}
+
+/*
+ * Frame-by-frame animations
+ */
+@keyframes loader {
+ to { background-position: -800px 0; }
+}
+.loader {
+ width: 100px; height: 100px;
+ text-indent: 999px; overflow: hidden; /* Hide text */
+ background: url(http://dabblet.com/img/loader.png) 0 0;
+ animation: loader 1s infinite steps(8);
+}
+
+/**
+ * Blinking
+ */
+@keyframes blink-1 { 50% { color: transparent } }
+@keyframes blink-2 { to { color: transparent } }
+p {
+	padding: 1em;
+	background: gold;
+}
+.blink-smooth-1 {
+	animation: 1s blink-1 3;
+}
+.blink-smooth-2 {
+	animation: .5s blink-2 6;
+	animation-direction: alternate;
+}
+.blink {
+	animation: 1s blink-1 3 steps(1);
+}
+
+
+/**
+ * Typing animation
+ */
+@keyframes typing {
+	from { width: 0 }
+}
+@keyframes caret {
+	50% { border-right-color: transparent; }
+}
+.typing {
+	font: bold 200% Consolas, Monaco, monospace;
+	/*width: 8.25em;*/
+	width: 15ch;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .05em solid;
+	animation: typing 8s steps(15),
+	           caret 1s steps(1) infinite;
+}
