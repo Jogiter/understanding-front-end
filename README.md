@@ -1,3 +1,6 @@
+[我如何零基础转行成为一个自信的前端](https://juejin.im/post/5c75d34851882564965edb23?utm_source=gold_browser_extension)
+----
+
 # 前端笔记
 
 分享和记录前端相关的学习技术和资料
