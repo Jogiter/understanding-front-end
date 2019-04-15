@@ -6,6 +6,7 @@
 分享和记录前端相关的学习技术和资料
 - rule
   - [前端规范](./doc/frontend.md)
+  - [代码整洁的 JavaScript](https://github.com/beginor/clean-code-javascript)
 - css
   - [3D透视](./css-tricks/3d-img.html)
   - [css-secrets](./css-tricks/css-secrets/supports/supports.html)
