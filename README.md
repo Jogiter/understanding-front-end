@@ -1,6 +1,8 @@
 [我如何零基础转行成为一个自信的前端](https://juejin.im/post/5c75d34851882564965edb23?utm_source=gold_browser_extension)
 ----
 
+>善于使用 git，阅读了解各类 [awesome](https://github.com/search?q=awesome&type=Repositories)。
+
 # 前端笔记
 
 分享和记录前端相关的学习技术和资料
@@ -80,37 +82,21 @@
 * [玩林](http://www.iwan0.com/)
 * [cnode前端资源教程](https://cnodejs.org/topic/56ef3edd532839c33a99d00e)
 
-
-
-
 -----
-
-
-
 
 ## 前端优秀的工具
 
-### Emmet
-Emmet是一款代码编辑器的插件, 支持多种流行的的编辑器. 通过它, 可以通过输入缩写来得到相应的HTML或者CSS代码, 大大提高输入效率.
-
-[emmet-Syntax](http://docs.emmet.io/cheat-sheet/)
-
-官方网站: <http://emmet.io/>
-
-### [sublime text3](http://www.sublimetext.com/3)
-
-[Sublime Text 使用介绍、全套快捷键及插件推荐](https://github.com/Jogiter/frontend/blob/dev/doc/sublime.md)
-
-### [atom](https://atom.io/)
-
-[Atom Plugins](https://atom.io/packages/atom-plugin)
-
-### [fiddler](http://www.telerik.com/fiddler)
-免费的抓包、模拟xhr、测试工具
+* [bitbucket](https://bitbucket.org/klook/)：可免费发布私有仓库的 `Git` 平台。
+* [Git](https://git-scm.com/downloads)：免费的开源分布式版本控制系统
+* [node](https://nodejs.org/en/)：`v8.11.4`
+  * [nrm](https://github.com/Pana/nrm)：`NPM` registry manager，快速切换不同的 `registry`：`npm`，`cnpm`，`nj`，`taobao`
+  * [nvm](https://github.com/nvm-sh/nvm)：`Node` Version Manager，快速切换多个 `Node` 版本。
+* [vscode](https://github.com/microsoft/vscode)：更友好的 `Typescript` 支持。
+  * [vscode 快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+* [emmet](http://emmet.io) css，html 高效工具，参考 [emmet-Syntax](http://docs.emmet.io/cheat-sheet/) 
+* [fiddler](http://www.telerik.com/fiddler) 免费的抓包、模拟xhr、测试工具
+* [chrome DevTools](https://developer.chrome.com/devtools/docs/remote-debugging#reverse-port-forwarding)
+* [Lighthouse](https://lighthouseapp.com/)
 
 
 
-
-### chrome DevTools--Remote Debugging on Android with Chrome1
-+ [chrome DevTools](https://developer.chrome.com/devtools/docs/remote-debugging#reverse-port-forwarding)
-+ [Lighthouse](https://lighthouseapp.com/)
