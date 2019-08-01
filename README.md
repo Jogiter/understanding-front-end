@@ -40,10 +40,17 @@
 * [Html 参考手册](http://w3school.com.cn/html/index.asp)
 
 ## CSS
+
 * [CSS学习](http://www.w3school.com.cn/css/)
 * [CSS参考手册](http://css.doyoe.com/) 可下载chm离线版
 * [A to Z css](http://www.atozcss.com/ "CSS Screencasts for Designers & Developers")
 * [Sass Guidelines](http://sass-guidelin.es/zh/#section)
+* [stylus](https://github.com/stylus/stylus)
+* [iconfont](https://github.com/search?q=svg+icons&type=Repositories)
+  * [Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
+  * [SVG icons for popular brands](https://github.com/simple-icons/simple-icons) 
+
+
 
 ## VUE
 
