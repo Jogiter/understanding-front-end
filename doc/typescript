@@ -1,0 +1,27 @@
+Typescript guides
+
+## start readings:
+
+*   official
+    *   [typescript](https://www.typescriptlang.org/docs/home.html)
+*   demos
+    *   [TypeScript-Vue-Starter](https://github.com/microsoft/TypeScript-Vue-Starter)
+    *   [typescript-vue-todomvc](https://github.com/DanielRosenwasser/typescript-vue-todomvc)
+*   tools
+    *   [vue-class-component](https://github.com/vuejs/vue-class-component)
+    *   [vue-property-decorator](https://github.com/kaorun343/vue-property-decorator)
+    *   [typescript-starter](https://github.com/bitjson/typescript-starter)
+*   awesome
+    *   [awesome-typescript](https://github.com/dzharii/awesome-typescript)
+    *   [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)
+
+## 注意事项
+
+请注意我们的单文件组件的一些事项：
+
+*   我们必须编写 `<script lang =“ts”>` 才能使用 `TypeScript`。
+*   我们必须在 `index.ts` 中导入扩展名为 `.vue` 的组件。
+*   **我们能够在 **`**<style>**`** 标签中编写与我们的组件隔离的 **`**CSS**`** ，这是我们在 **`**.ts**`** 组件中无法做到的。**
+*   我们默认导出了对 `Vue.extend` 的调用（而不是选项包本身）。如果你不写 `Vue.extend`，`Vetur` 会让它看起来像是正常工作，但是你在构建项目时会遇到错误。
+
+typescript 英文文档比中文文档更新快，更准确信息请翻阅英文文档。
