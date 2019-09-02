@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Git 实战 tips</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/night.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/lib/css/zenburn.min.css">
+  <style>
+    .reveal section img {
+      max-height: 80vh;
+      max-width: 80vw;
+    }
+    iframe {
+      width: 60vw;
+      height: 40vh;
+    }
+    .text-left {
+      text-align: left;
+    }
+    .text-sm {
+      font-size: 24px !important;
+    }
+    .text-md {
+      font-size: 28px !important;
+    }
+    .text-lg {
+      font-size: 32px !important;
+    }
+    .flex {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <section class="slides">
+      <section data-markdown>
+        ### Git 实战 tips
+
+        *  讲师：Jogiter.ding
+        *  部门：Partnership
+      </section>
+      <section data-markdown>
+        ![git-logo](https://img.jogiter.cn/share/git-logo.jpeg)
+      </section>
+      <section data-markdown>
+        #### 目录
+
+        +  Git flow
+        +  Git Commit Message
+      </section>
+      <section>
+        <section data-markdown>
+          #### Git flow
+        </section>
+        <section data-markdown class="text-left text-md">
+          Gitflow 工作流体现了工作流的经验和精髓。
+
+          Gitflow 工作流通过为功能开发、发布准备和维护分配独立的分支，让发布迭代过程更流畅。严格的分支模型也为大型项目提供了一些非常必要的结构。
+        </section>
+        <section data-markdown>
+          #### Install
+
+          ```sh
+          # Homebrew
+          $ brew install git-flow-avh
+
+          # Macports
+          $ port install git-flow-avh
+
+          # Linux
+          $ apt-get install git-flow
+
+          # Windows (Cygwin)
+          $ wget -q -O - --no-check-certificate https://raw.github.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh install stable | bash
+          ```
+        </section>
+        <section data-markdown>
+          #### Branches
+
+          ![git-flow](https://img.jogiter.cn/share/gitflow.png)
+        </section>
+        <section data-markdown>
+          #### Commands
+
+          ![git-flow-commands](https://danielkummer.github.io/git-flow-cheatsheet/img/git-flow-commands.png)
+
+          >[git-flow-cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          #### [Git Commit Message](https://www.conventionalcommits.org/zh)
+
+          是一种规范，用以给提交信息增加人机可读的信息。
+        </section>
+        <section data-markdown>
+          - 自动化生成 CHANGELOG。
+          - 基于提交的类型，自动决定语义化的版本变更。
+          - 向同事、公众与其他利益关系者传达变化的性质。
+          - 触发构建和部署流程。
+          - 让人们探索一个更加结构化的提交历史，以便降低对你的项目做出贡献的难度。
+        </section>
+        <section data-markdown>
+          <h2>提交说明的结构如下所示</h2>
+
+          ```html
+          &lt;type&gt;[optional scope]: &lt;description&gt;
+
+          [optional body]
+
+          [optional footer]
+          ```
+        </section>
+        <section data-markdown>
+          - 标题行: 必填, 描述主要修改类型和内容
+          - type: 查看 [conventional-commit-types](https://github.com/commitizen/conventional-commit-types/blob/master/index.json)
+          - scope: 作用域必须是一个描述某部分代码的名词，并用圆括号包围
+          - description: 描述指的是对代码变更的简短总结
+          - 主题内容（可选）: 描述为什么修改, 做了什么样的修改, 以及开发的思路等等
+          - 页脚注释（可选）: 放 `BREAKING CHANGE` 或 Closed Issues
+        </section>
+        <section data-background-iframe="https://www.conventionalcommits.org/zh/v1.0.0-beta.4/#%E7%A4%BA%E4%BE%8B">
+        </section>
+        <section data-markdown>
+          #### 应用
+        </section>
+        <section data-markdown>
+          添加对 `Commitizen` 的支持
+
+          ```sh
+          npm install commitizen -g
+          commitizen init cz-conventional-changelog --save-dev --save-exact
+          ```
+
+          创建一个提交记录
+
+          ```sh
+          git add .
+          git-cz
+          ```
+        </section>
+        <section data-markdown>
+          #### standard-version
+
+          自动化版本控制和CHANGELOG生成
+        </section>
+        <section data-markdown class="text-left">
+          >npm i -S standard-version
+
+          <p class="text-sm">
+            配置script "release": "standard-version"
+          </p>
+          <p class="text-sm">
+            运行 `npm run release` 即可生成 `CHANGELOG.md`。
+          </p>
+        </section>
+      </section>
+      <section data-markdown>
+        ####   阅读链接
+
+        - [git-flow-cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+        - [conventionalcommits](https://www.conventionalcommits.org/zh) 一种规范，用以给提交信息增加人机可读的信息
+        - [semver](https://semver.org/lang/zh-CN/) 语义化版本 2.0.0
+        - [Commitizen](http://commitizen.github.io/cz-cli/) Simple commit conventions for internet citizens.
+        - [standard-version](https://github.com/conventional-changelog/standard-version) 自动化版本控制和CHANGELOG生成
+        - [优雅的提交你的 Git Commit Message](https://juejin.im/post/5afc5242f265da0b7f44bee4)
+        - [如何写好 Git commit log?](https://www.zhihu.com/question/21209619/answer/257574960)
+      </section>
+      <section data-markdown>
+        THANKS
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/js/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/highlight/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/markdown/marked.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/markdown/markdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/plugin/zoom-js/zoom.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
