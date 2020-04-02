@@ -68,6 +68,37 @@
       </section>
 
       <section data-markdown>
+        #### how to use in ssr
+
+        ```js
+        // nuxt.config.js
+        build: {
+          postcss: {
+            plugins: {
+              '@fullhuman/postcss-purgecss': {
+                content: ['./pages/**/*.vue', './layouts/**/*.vue', './components/**/*.vue'],
+              }
+            }
+          }
+        }
+        ```
+      </section>
+
+      <section data-markdown>
+          #### how to use in mini-program
+
+          ```js
+          // tailwind.config.js
+          module.exports = {
+            separator: '-', // !important: 默认分隔符为 ':'，需要修改为 '-' （或者其他不需要转义的字符）
+            theme: {},
+            variants: {},
+            plugins: [],
+          }
+          ```
+        </section>
+
+      <section data-markdown>
         ####   阅读链接
 
         - [emmet-cheatsheet](https://docs.emmet.io/cheat-sheet/)
