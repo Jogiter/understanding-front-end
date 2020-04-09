@@ -6,109 +6,288 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>tailwindcss guide</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/reveal.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/night.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/white.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/lib/css/zenburn.min.css">
-  <style>
-    .reveal section img {
-      max-height: 80vh;
-      max-width: 80vw;
-    }
-    iframe {
-      width: 60vw;
-      height: 40vh;
-    }
-    .text-left {
-      text-align: left;
-    }
-    .text-sm {
-      font-size: 24px !important;
-    }
-    .text-md {
-      font-size: 28px !important;
-    }
-    .text-lg {
-      font-size: 32px !important;
-    }
-    .flex {
-      display: flex;
-    }
-  </style>
+  <link href="https://cdn.bootcss.com/tailwindcss/1.2.0/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="reveal">
     <section class="slides">
-      <section data-markdown>
-        ### tailwindcss guide
-
-        *  Author：Jogiter.ding
+      <section>
+        <div class="flex justify-center">
+          <img class="m-auto" width="400" src="https://camo.githubusercontent.com/97517e40f9727cc4637bea2d0e1b813d4639f8b2/68747470733a2f2f7461696c77696e646373732e636f6d2f696d672f7461696c77696e642e737667" alt="">
+        </div>
       </section>
 
       <section data-markdown>
-        #### stateofcss 20019
+        WHY？
+
+        + 大多数CSS框架做得太多。当你想要自定义设计时，痛苦大于帮助。
+        + 使用传统方法，每次添加新功能时CSS文件都会变大。
+      </section>
+
+      <section data-markdown>
+        #### [stateofcss 20019](https://2019.stateofcss.com/technologies/css-frameworks/#tools-section-overview)
 
         ![stateofcss](https://img.jogiter.cn/share/stateofcss-2019.png)
       </section>
 
-      <section data-markdown>
-        #### Why tailwindcss?
+      <section>
+        <section data-markdown>
+          ### tailwindcss
 
-        + 提供非常基础的工具类
-        + 响应式支持
-        + 组件友好
-        + 为定制化设计
+          A **utility-first** CSS framework for rapidly building custom designs.
+        </section>
+        <section data-markdown>
+          [tailwind-cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
+        </section>
+        <section data-background-iframe="https://nerdcave.com/tailwind-cheat-sheet"></section>
+        <section data-markdown>
+          [区别](https://tailwind.run/bqwS2v/9)
+        </section>
+        <section data-background-iframe="https://tailwind.run/bqwS2v/9"></section>
+        <section data-markdown>
+          优势
+
+          + **您并没有浪费精力来发明类名**。不再为真正只是一个flex容器的东西而烦恼完美的命名。
+          + **您的CSS停止增长**。使用传统方法，每次添加新功能时CSS文件都会变大。而所有内容都是可重用的，因此几乎不需要编写新的CSS。
+          + **进行更改会更安全**。如果CSS是全局的，无法清楚改动的影响。但是如果HTML中的 class 是本地的，这样就可以避免无畏的担心。
+        </section>
       </section>
 
-      <section data-background-iframe="https://tailwindcss.com/"></section>
+      <section>
+        <section data-markdown>
+          优势
+        </section>
+        <section data-markdown>
+          轻松构建组件
+        </section>
+        <section data-markdown>
+          响应式布局，移动端优先
 
+          + sm: `@media (min-width: 640px) { /* ... */ }`
+          + md: `@media (min-width: 768px) { /* ... */ }`
+          + lg: `@media (min-width: 1024px) { /* ... */ }`
+          + xl: `@media (min-width: 1280px) { /* ... */ }`
+        </section>
+        <section data-markdown>
+          支持伪类
 
-      <section data-markdown>
-          #### online demo
-
-          + [https://tailwind.run/](https://tailwind.run/bqwS2v/6)
+          + `hover`
+          + `focus`
+          + `active`
+          + `disabled`
+          + `visited`
+          + `first-child`
+          + `last-child`
+          + `odd-child`
+          + `even-child`
+          + `group-hover`
+          + `focus-within`
+        </section>
+        <section data-markdown>
+          [demo](https://tailwind.run/bqwS2v/15)
+        </section>
+        <section data-background-iframe="https://tailwind.run/bqwS2v/15"></section>
       </section>
 
-      <section data-markdown>
-        #### how to use in ssr
+      <section>
+          <section data-markdown="">
+            组件开发
+          </section>
+          <section data-markdown="">
+            使用 tailwind 的自定义函数和指令
+          </section>
+          <section data-background-iframe="https://tailwind.run/bqwS2v/16"></section>
+          <section data-markdown="">
+              使用 tailwind 插件
+          </section>
+          <section data-markdown="">
+            插件使用：一
 
-        ```js
-        // nuxt.config.js
-        build: {
-          postcss: {
-            plugins: {
-              '@fullhuman/postcss-purgecss': {
-                content: ['./pages/**/*.vue', './layouts/**/*.vue', './components/**/*.vue'],
-              }
-            }
-          }
-        }
-        ```
+```shell
+# 生成一个自定义名称的配置文件。默认 tailwind.config.js
+npx tailwindcss init tailwindcss-config.js
+```
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: [
+    require('tailwindcss')('./tailwindcss-config.js'),
+  ],
+}
+```
+          </section>
+          <section data-markdown="">
+              插件使用：二
+
+```js
+// tailwind.config.js
+const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  plugins: [
+    plugin(function({ addUtilities, addComponents, e, prefix, config }) {
+      // Add your custom styles here
+
+      const newUtilities = {
+        '.skew-10deg': {
+          transform: 'skewY(-10deg)',
+        },
+      }
+
+      const buttons = {
+        '.btn-blue': {
+          backgroundColor: '#3490dc',
+          color: '#fff',
+          '&:hover': {
+            backgroundColor: '#2779bd'
+          },
+        },
+      }
+
+      addComponents(buttons)
+      addUtilities(newUtilities, {
+        variants: ['responsive', 'hover'],
+      })
+    }),
+  ]
+}
+```
+          </section>
       </section>
 
-      <section data-markdown>
-          #### how to use in mini-program
+      <section>
+        <section data-markdown>
+            安装 tailwindcss
+        </section>
+        <section data-markdown>
+```sh
+# 安装
+npm install tailwindcss
+```
+          </section>
+
+          <section data-markdown>
+```scss
+# 将Tailwind添加到CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+          </section>
+
+          <section data-markdown>
+```sh
+# 将在项目的根目录下创建一个 `tailwind.config.js`
+npx tailwindcss init
+```
+          </section>
+      </section>
+
+      <section>
+          <section data-markdown>
+              Tailwind CSS 配置
+
+              >[默认配置](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js)
+          </section>
+          <section data-markdown="">
+            控制生成的CSS文件大小
+
+            使用默认配置，Tailwind CSS gzip压缩后为78.0kb。
+          </section>
+
+          <section data-markdown="">
+            使用 [Purgecss](https://github.com/FullHuman/purgecss) 删除没有用到的 css
+
+            >[comparison with UnCSS and PurifyCSS](https://purgecss.com/comparison.html#uncss)
+          </section>
+
+          <section data-markdown>
+            Purgecss 配置
+
+  ```js
+  npm install @fullhuman/postcss-purgecss --save-dev
+
+  // postcss.config.js
+  const purgecss = require('@fullhuman/postcss-purgecss')()
+  module.exports = {
+    plugins: [
+      require('tailwindcss'),
+      require('autoprefixer'),
+      ...process.env.NODE_ENV === 'production'
+        ? [purgecss]
+        : []
+    ]
+  }
+  ```
+          </section>
+
+          <section data-markdown="">
+            删除未使用的工具和变量。
+
+  ```js
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    corePlugins: {
+      container: false // 设置 false 来删除工具类
+    },
+    variants: {
+      appearance: [] // 设置 [] 来删除响应式和伪类
+    }
+  }
+  ```
+          </section>
+        </section>
+
+      <section>
+        <section data-markdown>
+          项目应用
+        </section>
+
+        <section data-markdown>
+          #### how to use in ssr
 
           ```js
-          // tailwind.config.js
-          module.exports = {
-            separator: '-', // !important: 默认分隔符为 ':'，需要修改为 '-' （或者其他不需要转义的字符）
-            theme: {},
-            variants: {},
-            plugins: [],
+          // nuxt.config.js
+          build: {
+            postcss: {
+              plugins: {
+                '@fullhuman/postcss-purgecss': {
+                  content: ['./pages/**/*.vue', './layouts/**/*.vue', './components/**/*.vue'],
+                }
+              }
+            }
           }
           ```
         </section>
 
-      <section data-markdown>
-        ####   阅读链接
+        <section data-markdown>
+            #### how to use in applet
 
-        - [emmet-cheatsheet](https://docs.emmet.io/cheat-sheet/)
-        - [tailwind-cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
-        - [awesome-tailwindcss](https://github.com/aniftyco/awesome-tailwindcss)
-        - [https://tailwind.run/](https://tailwind.run/bqwS2v/6)
+```js
+// tailwind.config.js
+module.exports = {
+  // 默认分隔符为 ':'，但是小程序不支持此类样式。需要修改为 '-' （或者其他不需要转义的字符）
+  separator: '-',
+  theme: {},
+  variants: {},
+  plugins: [],
+}
+```
+          </section>
       </section>
 
       <section data-markdown>
-        THANKS
+        ####   阅读链接
+
+        - [tailwindcss](https://tailwindcss.com/)
+        - [tailwind-cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
+        - [awesome-tailwindcss](https://github.com/aniftyco/awesome-tailwindcss)
+        - [purgecss](https://github.com/FullHuman/purgecss)
+        - [https://tailwind.run/](https://tailwind.run/)
       </section>
     </div>
   </div>
