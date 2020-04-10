@@ -204,27 +204,36 @@ npx tailwindcss init
             >[comparison with UnCSS and PurifyCSS](https://purgecss.com/comparison.html#uncss)
           </section>
 
-          <section data-markdown>
-            Purgecss 配置
+          <section data-markdown="">
+              Purgecss 配置
 
-  ```js
-  npm install @fullhuman/postcss-purgecss --save-dev
+              ```js
+              npm install @fullhuman/postcss-purgecss --save-dev
 
-  // postcss.config.js
-  const purgecss = require('@fullhuman/postcss-purgecss')()
-  module.exports = {
-    plugins: [
-      require('tailwindcss'),
-      require('autoprefixer'),
-      ...process.env.NODE_ENV === 'production'
-        ? [purgecss]
-        : []
-    ]
-  }
-  ```
+              // postcss.config.js
+              const purgecss = require('@fullhuman/postcss-purgecss')({
+                  content: [
+                  './src/**/*.vue',
+                  ],
+                  // 为什么会丢失 xl:block 等 css 的原因：https://purgecss.com/extractors.html#default-extractor
+                  // 默认提取器将文件的每个单词视为选择器。默认值见：https://github.com/FullHuman/purgecss/blob/master/packages/purgecss/src/options.ts#L6-L7
+                  // 默认提取器有一些限制： 不考虑特殊字符，例如'@'，'：'，'/'
+                  defaultExtractor: content => content.match(/[\w-/:]+(?&lt;!:)/g) || [],
+              })
+
+              module.exports = {
+                  plugins: [
+                  require('tailwindcss'),
+                  require('autoprefixer'),
+                  ...process.env.NODE_ENV === 'production'
+                      ? [purgecss]
+                      : []
+                  ]
+              }
+              ```
           </section>
 
-          <section data-markdown="">
+          <section data-markdown>
             删除未使用的工具和变量。
 
   ```js
@@ -240,7 +249,7 @@ npx tailwindcss init
   }
   ```
           </section>
-        </section>
+      </section>
 
       <section>
         <section data-markdown>
