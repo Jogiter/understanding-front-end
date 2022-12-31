@@ -10,7 +10,7 @@
     "format": "eslint --ext .vue,.js --fix ./"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^5.1.0",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
